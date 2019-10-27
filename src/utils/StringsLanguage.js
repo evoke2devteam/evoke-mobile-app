@@ -13,6 +13,8 @@ const strings = new LocalizedStrings({
         content_error_validation: "Por favor verifica que el código sea exactamente igual al compartido",
         accept_error_validation: "Aceptar",
         code_validate_button: "Validar",
+        label_code_validate: "Validando código...",
+        label_instructions: "Ingresa el código de invitación",
 
         //Camera View
         title_toolbar_section_camera: "Camara",
@@ -43,6 +45,7 @@ const strings = new LocalizedStrings({
         invite_button: "Invitar a mis amigos",
         back_button: "Regresar",
 
+        //Invitation code
         title_popup_share: "Código de invitación",
         message_popup_share: "Invita a tus amigos a vivir una gran experiencia con Evoke",
         button_popup_share: "Compartir",
@@ -61,6 +64,8 @@ const strings = new LocalizedStrings({
         content_error_validation: "Please verify that the code is exactly the same as the shared",
         accept_error_validation: "Accept",
         code_validate_button: "Validate",
+        label_code_validate: "Validating code...",
+        label_instructions: "Enter the invitation code",
 
         //Camera View
         title_toolbar_section_camera: "Camera",

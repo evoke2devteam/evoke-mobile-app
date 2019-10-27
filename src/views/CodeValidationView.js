@@ -1,6 +1,7 @@
 import React from 'react';
-import {AppRegistry, View, TextInput, Alert, Button} from 'react-native';
+import {AppRegistry, View, TextInput, Alert, Button, Text} from 'react-native';
 import StringsLanguage from '../utils/StringsLanguage';
+import { Icon } from 'react-native-elements';
 
 export default class CodeValidationView extends React.Component {
     static navigationOptions = {
@@ -10,13 +11,20 @@ export default class CodeValidationView extends React.Component {
         super(props);
         this.state = {
             navigate: this.props.navigation.navigate,
-            code: null
+            code: null,
+            validating: false
         };
+    }
+
+    validate(){
+        this.setState({validating: true});
+        setTimeout(this.codeValidate.bind(this), 3000);
+
     }
 
     codeValidate(){
         if(this.state.code){
-            this.state.navigate('AuthView');
+            this.state.navigate('IntroView');
         }else{
             Alert.alert(
                 StringsLanguage.title_error_validation,
@@ -28,23 +36,37 @@ export default class CodeValidationView extends React.Component {
                 ],
                 {cancelable: false}
             );
+            this.setState({validating: false});
         }
     }
 
     render() {
         return (
             <View style={styles.container}>
-                    <View>
-                        <TextInput
-                            style={{ height: 40, marginTop: 80, borderBottomWidth: 1, borderBottomColor: '#6d6d6d'}}
-                            onChangeText={code => {this.setState({code})}}
-                        />
+                <Icon
+                    name='ios-key'
+                    type='ionicon'
+                    color='#0DAEF4'
+                    size={200}
+                    onPress={() => {this.state.navigate('CameraView', {mision: this.state.mision, activity: this.state.activity})} }
+                />
+                <Text style={styles.instructions}>
+                    {StringsLanguage.label_instructions}
+                </Text>
+                <View>
+                    <TextInput
+                        style={styles.textInput}
+                        onChangeText={code => {this.setState({code})}}
+                    />
+                    {(this.state.validating === true) ?
+                        <Text style={styles.text}>{StringsLanguage.label_code_validate}</Text> :
                         <Button
                             style={styles.button}
                             title={StringsLanguage.code_validate_button}
-                            onPress={() => this.codeValidate()}
+                            onPress={() => this.validate()}
                         />
-                    </View>
+                    }
+                </View>
             </View>
         );
     }
@@ -53,13 +75,29 @@ export default class CodeValidationView extends React.Component {
 const styles = {
     container: {
         flex: 1,
-        alignItems: 'center'
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    instructions:{
+      fontSize: 18,
+        marginTop: 30
+    },
+    text: {
+        fontSize: 20
+    },
+    textInput:{
+        height: 40,
+        width: 150,
+        borderWidth: 1,
+        borderBottomColor: '#6d6d6d',
+        marginBottom: 10,
+        marginTop: 20,
+        textAlign: 'center'
     },
     button: {
-        flex: 1,
         width: '100%',
-        backgroundColor: 'transparent',
-        marginTop: 25
+        backgroundColor: '#0DAEF4',
     }
 };
 

@@ -75,7 +75,7 @@ export default class ProfileView extends React.Component {
                     <View style={styles.item}>
                         <Text style={styles.text_buttons}>Evocoins {"\n"} {this.state.evocoins}</Text>
                     </View>
-                    <TouchableHighlight style={styles.item} onPress={() => this.state.navigate('MisionListView')}>
+                    <TouchableHighlight style={styles.item} onPress={() => this.state.navigate('CampaignListView')}>
                         <View>
                             <Text style={styles.text_buttons}>{StringsLanguage.view_missions_button}</Text>
                         </View>

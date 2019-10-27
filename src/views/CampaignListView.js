@@ -24,6 +24,7 @@ export default class MisionDetailView extends React.Component {
 
     render() {
         let missionList = this.state.list.filter( mission => mission['tags'].includes(this.state.language) );
+        console.log(this.state.list)
         return (
             <View>
                 <Text style={styles.title}>{StringsLanguage.title_section_mission_list}</Text>
