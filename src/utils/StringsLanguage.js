@@ -3,6 +3,10 @@ import LocalizedStrings from 'react-native-localization';
 
 const strings = new LocalizedStrings({
     'es-co': {
+
+        //Loading view
+        loading_text: "Cargando...",
+
         //Home View
         start_button: "Iniciar",
         validate_button: "Validar código de invitación",
@@ -54,6 +58,10 @@ const strings = new LocalizedStrings({
 
     },
     'en-us':{
+
+        //Loading view
+        loading_text: "Loading...",
+
         //Home View
         start_button: "Start",
         validate_button: "Validate invitation code",
