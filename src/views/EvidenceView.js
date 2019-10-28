@@ -71,7 +71,7 @@ export default class EvidenceView extends React.Component {
             },
             body: JSON.stringify({
                 "mimeType": "image/jpeg",
-                "name": "Prueba 1",
+                "name": `Evidence mission ${this.state.mission}`,
                 "id_gg": this.state.idGoogle,
                 "idMission": this.state.mission.toString(),
                 "description": this.state.description,
@@ -80,16 +80,17 @@ export default class EvidenceView extends React.Component {
             })
         }).then((response) => response.json()).then((responseJson) => {
             if(responseJson.status){
-                console.log(responseJson)
-                Alert.alert(StringsLanguage.send_evidence_success,
-                    [{ text: 'Ok', onPress: () => this.state.navigate('CampaignDetailView', {campaign: this.state.campaign})}],
-                    { cancelable: false}
-                 );
+                Alert.alert(
+                    '',
+                    StringsLanguage.send_evidence_success,
+            [ {text: 'Ok', onPress: () => this.state.navigate('CampaignDetailView', {campaign: this.state.campaign})} ]
+                );
             }else{
-                Alert.alert(StringsLanguage.send_evidence_error,
-                    [{ text: 'Ok', onPress: () => console.log('Hola')}],
-                { cancelable: false}
-        );
+                Alert.alert(
+                    '',
+                    StringsLanguage.send_evidence_error,
+                    [ {text: 'Ok'} ]
+                );
             }
         }).catch((error) => {
             console.error(error);
