@@ -34,7 +34,7 @@ export default class LoadingView extends React.Component {
         if(isSignedIn){
             this.state.navigate('ProfileView');
         }else{
-            this.state.navigate('IntroView');
+            this.state.navigate('CodeValidationView');
         }
     }
 
