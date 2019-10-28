@@ -28,6 +28,9 @@ const strings = new LocalizedStrings({
         title_section_evidence: "Evidencia Misión",
         evidence_placeholder_description: "Descripción de la evidencia",
         send_evidence_button: "Enviar",
+        send_evidence_success: "Evidencia almacenada con éxito!",
+        send_evidence_error: "Ha ocurrido un error al almacenar la evidencia, inténtalo de nuevo",
+        back_to_campaign_button: "Regresar",
 
         //Campaign Detail View
         subtitle_section_campaign: "Misiones",
@@ -79,6 +82,9 @@ const strings = new LocalizedStrings({
         title_section_evidence: "Mission Evidence",
         evidence_placeholder_description: "Evidence description",
         send_evidence_button: "Send",
+        send_evidence_success: "Evidence stored successfully!",
+        send_evidence_error: "An error occurred while storing the evidence, try again",
+        back_to_campaign_button: "Go back",
 
         //Campaign Detail View
         subtitle_section_campaign: "Missions",

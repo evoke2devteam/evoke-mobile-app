@@ -1,7 +1,9 @@
 import React from 'react';
-import {AppRegistry, ScrollView, Text, Button, TextInput, Image} from 'react-native';
+import {AppRegistry, ScrollView, Text, Button, TextInput, Image, Alert} from 'react-native';
 import { Icon } from 'react-native-elements';
 import StringsLanguage from '../utils/StringsLanguage';
+import { GoogleSignin } from 'react-native-google-signin';
+import Config from '../utils/Constants';
 
 export default class EvidenceView extends React.Component {
     static navigationOptions = {
@@ -12,8 +14,18 @@ export default class EvidenceView extends React.Component {
         this.state = {
             navigate: this.props.navigation.navigate,
             campaign: this.props.navigation.getParam('campaign'),
-            mission: this.props.navigation.getParam('mission')
+            mission: this.props.navigation.getParam('mission'),
+            description: null,
+            idGoogle: null,
+            accessToken: null
         }
+        this.sendEvidence = this.sendEvidence.bind(this);
+    }
+
+    async componentDidMount() {
+        let googleInfo = await GoogleSignin.signIn();
+        let tokensInfo = await GoogleSignin.getTokens();
+        this.setState({idGoogle: googleInfo.user.id, accessToken: tokensInfo.accessToken});
     }
 
     static getDerivedStateFromProps(nextProps) {
@@ -25,7 +37,7 @@ export default class EvidenceView extends React.Component {
             <ScrollView>
                 <Text style={styles.title}>{StringsLanguage.title_section_evidence} {this.state.mission}</Text>
                 { (this.state.pathPhoto) ?
-                    <Image style={{width: 200, height: 200}} source={{uri: this.state.pathPhoto, isStatic:true}}/> :
+                    <Image style={{width: 200, height: 200}} source={{uri: `data:image/jpeg;base64,${this.state.pathPhoto}`, isStatic:true}}/> :
                     <Icon
                         reverse
                         name='ios-camera'
@@ -39,11 +51,49 @@ export default class EvidenceView extends React.Component {
 
                 <TextInput
                     style={styles.textInput}
+                    onChangeText={(description) => this.setState({description})}
                     placeholder={StringsLanguage.evidence_placeholder_description}
                 />
-                <Button title={StringsLanguage.send_evidence_button} onPress={() => this.state.navigate('CampaignDetailView', {campaign: this.state.campaign, mission: this.state.mission})}/>
-            </ScrollView>
+
+                <Button title={StringsLanguage.send_evidence_button} onPress={this.sendEvidence}/>
+                <Button title={StringsLanguage.back_to_campaign_button} onPress={() => this.state.navigate('CampaignDetailView', {campaign: this.state.campaign})}/>
+
+
+        </ScrollView>
         );
+    }
+
+    sendEvidence(){
+        fetch(`${Config.API_URL}/submit-drive`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "mimeType": "image/jpeg",
+                "name": "Prueba 1",
+                "id_gg": this.state.idGoogle,
+                "idMission": this.state.mission.toString(),
+                "description": this.state.description,
+                "image": `data:image/jpeg;base64,${this.state.pathPhoto}`,
+                "access_token": this.state.accessToken
+            })
+        }).then((response) => response.json()).then((responseJson) => {
+            if(responseJson.status){
+                console.log(responseJson)
+                Alert.alert(StringsLanguage.send_evidence_success,
+                    [{ text: 'Ok', onPress: () => this.state.navigate('CampaignDetailView', {campaign: this.state.campaign})}],
+                    { cancelable: false}
+                 );
+            }else{
+                Alert.alert(StringsLanguage.send_evidence_error,
+                    [{ text: 'Ok', onPress: () => console.log('Hola')}],
+                { cancelable: false}
+        );
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
     }
 }
 
