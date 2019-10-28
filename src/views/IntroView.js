@@ -1,32 +1,10 @@
 import React from 'react';
 import { AppRegistry } from 'react-native';
 import { View, Text } from 'react-native';
-import StringsLanguage from '../utils/StringsLanguage';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {Icon} from "react-native-elements";
-
-const slides = [
-    {
-        key: '1',
-        text: 'Evoke: Es un juego donde realizas misiones, solucionas problemas y ganas dinero',
-        icon: 'ios-bicycle'
-    },
-    {
-        key: '2',
-        text: 'Campaña: Es una serie de misiones con diferentes niveles de dificultad',
-        icon: 'ios-bicycle'
-    },
-    {
-        key: '3',
-        text: 'Evokation: Es el proyecto resultante al cumplir las misiones de la campaña',
-        icon: 'ios-bicycle'
-    },
-    {
-        key: '4',
-        text: 'Evocoins y rubíes: Ambos son monedas virtuales.',
-        icon: 'ios-bicycle'
-    },
-];
+import SlidesData from '../data/intro_slides';
+import AsyncStorage from "@react-native-community/async-storage";
 
 export default class IntroView extends React.Component {
     static navigationOptions = {
@@ -37,10 +15,19 @@ export default class IntroView extends React.Component {
         super(props);
         this.state = {
             navigate: this.props.navigation.navigate,
+            slides: SlidesData,
+            language: null
         }
     }
 
-    renderItem = (item) => {
+    componentDidMount() {
+        AsyncStorage.getItem('language').then((language) => {
+            this.setState({slides: this.state.slides.filter(mission => mission['lang'] === language )});
+        });
+
+    }
+
+    renderItem (item) {
         return (
             <View style={styles.mainContent}>
                 <Icon
@@ -54,11 +41,22 @@ export default class IntroView extends React.Component {
         );
     };
 
-
+    renderDoneButton () {
+        return (
+            <View style={styles.buttonCircle}>
+                <Icon
+                    name='ios-checkmark'
+                    type='ionicon'
+                    color='#517fa4'
+                    size={70}
+                />
+            </View>
+        );
+    };
 
     render() {
         return (
-            <AppIntroSlider renderItem={this.renderItem} slides={slides} onDone={() => {this.state.navigate('AuthView');}} bottomButton/>
+            <AppIntroSlider renderItem={this.renderItem} slides={this.state.slides} onDone={() => {this.state.navigate('AuthView');}} renderDoneButton={this.renderDoneButton}/>
         );
     }
 }

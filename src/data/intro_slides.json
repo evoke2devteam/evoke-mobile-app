@@ -1,0 +1,50 @@
+[
+  {
+    "key": "1",
+    "text": "Evoke: Es un juego donde realizas misiones, solucionas problemas y ganas dinero",
+    "icon": "ios-bicycle",
+    "lang": "es-co"
+  },
+  {
+    "key": "2",
+    "text": "Campaña: Es una serie de misiones con diferentes niveles de dificultad",
+    "icon": "ios-bicycle",
+    "lang": "es-co"
+  },
+  {
+    "key": "3",
+    "text": "Evokation: Es el proyecto resultante al cumplir las misiones de la campaña",
+    "icon": "ios-bicycle",
+    "lang": "es-co"
+  },
+  {
+    "key": "4",
+    "text": "Evocoins y rubíes: Ambos son monedas virtuales.",
+    "icon": "ios-bicycle",
+    "lang": "es-co"
+  },
+  {
+    "key": "5",
+    "text": "Evoke: It is a game where you perform missions, solve problems and earn money",
+    "icon": "ios-bicycle",
+    "lang": "en-us"
+  },
+  {
+    "key": "6",
+    "text": "Campaign: It is a series of missions with different levels of difficulty",
+    "icon": "ios-bicycle",
+    "lang": "en-us"
+  },
+  {
+    "key": "7",
+    "text": "Evokation: It is the resulting project when fulfilling the missions of the campaign",
+    "icon": "ios-bicycle",
+    "lang": "en-us"
+  },
+  {
+    "key": "8",
+    "text": "Evocoins and rubies: Both are virtual currencies.",
+    "icon": "ios-bicycle",
+    "lang": "en-us"
+  }
+]
