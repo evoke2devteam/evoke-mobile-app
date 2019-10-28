@@ -10,7 +10,8 @@ export default class CartoonView extends React.Component {
         super(props);
         this.state = {
             navigate: this.props.navigation.navigate,
-            mision: this.props.navigation.getParam('mision')
+            campaign: this.props.navigation.getParam('campaign'),
+            mission: this.props.navigation.getParam('mission')
         }
     }
 
@@ -20,8 +21,8 @@ export default class CartoonView extends React.Component {
                 <Text style={styles.title}>{StringsLanguage.title_section_cartoon}</Text>
                 <Image source={require("../res/images/cartoon_1.png")}/>
                 <Image source={require("../res/images/cartoon_2.png")}/>
-                <Button onPress={()=>{this.state.navigate('MisionDetailView', {mision: this.state.mision})}}
-                title={StringsLanguage.go_to_mision_button}/>
+                <Button onPress={()=>{this.state.navigate('EvidenceView', {campaign: this.state.campaign, mission: this.state.mission})}}
+                title={StringsLanguage.go_to_form_evidence}/>
             </ScrollView>
         );
     }

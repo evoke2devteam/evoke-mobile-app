@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppRegistry, ScrollView, Text, Button, TextInput, Alert, Image} from 'react-native';
+import {AppRegistry, ScrollView, Text, Button, TextInput, Image} from 'react-native';
 import { Icon } from 'react-native-elements';
 import StringsLanguage from '../utils/StringsLanguage';
 
@@ -11,19 +11,19 @@ export default class EvidenceView extends React.Component {
         super(props);
         this.state = {
             navigate: this.props.navigation.navigate,
-            mision: this.props.navigation.getParam('mision'),
-            activity: this.props.navigation.getParam('activity')
+            campaign: this.props.navigation.getParam('campaign'),
+            mission: this.props.navigation.getParam('mission')
         }
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
+    static getDerivedStateFromProps(nextProps) {
         return {pathPhoto: nextProps.navigation.getParam('pathPhoto')};
     }
 
     render() {
         return (
             <ScrollView>
-                <Text style={styles.title}>{StringsLanguage.title_section_evidence} {this.state.activity}</Text>
+                <Text style={styles.title}>{StringsLanguage.title_section_evidence} {this.state.mission}</Text>
                 { (this.state.pathPhoto) ?
                     <Image style={{width: 200, height: 200}} source={{uri: this.state.pathPhoto, isStatic:true}}/> :
                     <Icon
@@ -32,7 +32,7 @@ export default class EvidenceView extends React.Component {
                         type='ionicon'
                         color='#517fa4'
                         size={40}
-                        onPress={() => {this.state.navigate('CameraView', {mision: this.state.mision, activity: this.state.activity})} }
+                        onPress={() => {this.state.navigate('CameraView', {campaign: this.state.campaign, mission: this.state.mission})} }
                     />
 
                 }
@@ -41,7 +41,7 @@ export default class EvidenceView extends React.Component {
                     style={styles.textInput}
                     placeholder={StringsLanguage.evidence_placeholder_description}
                 />
-                <Button title={StringsLanguage.send_evidence_button} onPress={() => this.state.navigate('MisionDetailView', {mison: this.state.mision})}/>
+                <Button title={StringsLanguage.send_evidence_button} onPress={() => this.state.navigate('CampaignDetailView', {campaign: this.state.campaign, mission: this.state.mission})}/>
             </ScrollView>
         );
     }

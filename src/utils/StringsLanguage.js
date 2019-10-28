@@ -7,10 +7,6 @@ const strings = new LocalizedStrings({
         //Loading view
         loading_text: "Cargando...",
 
-        //Home View
-        start_button: "Iniciar",
-        validate_button: "Validar código de invitación",
-
         //Validate Code View
         validate: "Validar",
         title_error_validation: "Código no válido",
@@ -26,18 +22,18 @@ const strings = new LocalizedStrings({
 
         //Cartoon View
         title_section_cartoon: "Historia gráfica",
-        go_to_mision_button: "Ir a la misión",
+        go_to_form_evidence: "Ir",
 
-        //Evidence (Activity) View
-        title_section_evidence: "Evidencia Actividad",
+        //Evidence (Mission) View
+        title_section_evidence: "Evidencia Misión",
         evidence_placeholder_description: "Descripción de la evidencia",
         send_evidence_button: "Enviar",
 
-        //Mission Detail View
-        subtitle_section_mission: "Actividades",
+        //Campaign Detail View
+        subtitle_section_campaign: "Misiones",
 
-        //Mission List View
-        title_section_mission_list: "Misiones",
+        //Campaign List View
+        title_section_campaign_list: "Campañas",
 
         //Profile View
         view_missions_button: "Ver misiones",
@@ -62,10 +58,6 @@ const strings = new LocalizedStrings({
         //Loading view
         loading_text: "Loading...",
 
-        //Home View
-        start_button: "Start",
-        validate_button: "Validate invitation code",
-
         //Validate Code View
         validate: "Validate",
         title_error_validation: "Invalid code",
@@ -81,18 +73,18 @@ const strings = new LocalizedStrings({
 
         //Cartoon View
         title_section_cartoon: "Graphic hitory",
-        go_to_mision_button: "Go to mission",
+        go_to_form_evidence: "Go",
 
-        //Evidence (Activity) View
-        title_section_evidence: "Activity Evidence",
+        //Evidence (Mission) View
+        title_section_evidence: "Mission Evidence",
         evidence_placeholder_description: "Evidence description",
         send_evidence_button: "Send",
 
-        //Mission Detail View
-        subtitle_section_mission: "Activities",
+        //Campaign Detail View
+        subtitle_section_campaign: "Missions",
 
-        //Mission List View
-        title_section_mission_list: "Missions",
+        //Campaign List View
+        title_section_campaign_list: "Campaigns",
 
         //Profile View
         view_missions_button: "View missions",

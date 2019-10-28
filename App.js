@@ -5,7 +5,7 @@ import CameraView from './src/views/CameraView';
 import AuthView from './src/views/AuthView';
 import ProfileView from './src/views/ProfileView';
 import CampaignListView from './src/views/CampaignListView';
-import MisionDetailView from './src/views/MisionDetailView';
+import CampaignDetailView from './src/views/CampaignDetailView';
 import CartoonView from './src/views/CartoonView';
 import EvidenceView from './src/views/EvidenceView';
 import SettingsView from './src/views/SettingsView';
@@ -21,7 +21,7 @@ const MainNavigator = createStackNavigator({
     AuthView: {screen: AuthView},
     ProfileView: {screen: ProfileView},
     CampaignListView: {screen: CampaignListView},
-    MisionDetailView: {screen: MisionDetailView},
+    CampaignDetailView: {screen: CampaignDetailView},
     CartoonView: {screen: CartoonView},
     EvidenceView: {screen: EvidenceView},
     SettingsView: {screen: SettingsView},
