@@ -3,6 +3,8 @@ import { AppRegistry, StyleSheet, View, Alert, Button } from 'react-native';
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
 import AsyncStorage from "@react-native-community/async-storage";
 import config from "../../config";
+import Config from "../utils/Constants";
+import StringsLanguage from "../utils/StringsLanguage";
 
 export default class AuthView extends React.Component {
 
@@ -48,7 +50,6 @@ export default class AuthView extends React.Component {
   };
 
   render() {
-
     const body = this.state.isAuthenticated ? this.renderSignOutButton() : this.renderSignInButton();
     return (
         <View style={[styles.container, { flex: 1 }]}>
@@ -88,8 +89,8 @@ export default class AuthView extends React.Component {
       const userInfo = await GoogleSignin.signIn();
       this.setState({ userInfo, error: null });
       const token = await GoogleSignin.getTokens();
-      this.storeToken('google_token', JSON.stringify(token));
-      this.goToProfile();
+      await AsyncStorage.setItem("google_token", token.idToken);
+      this.authEvoke(userInfo.idToken, userInfo.user.name, userInfo.user.email, token.idToken);
 
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -109,6 +110,38 @@ export default class AuthView extends React.Component {
       this.state.navigate('HomeView');
     }
   };
+
+  authEvoke(idGoogle, name, email, authToken){
+      fetch(`${Config.API_URL}/account/login`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authToken}`
+          },
+          body: JSON.stringify({
+              "id_gg": idGoogle,
+              "firstName": name,
+              "email": email
+          })
+      }).then( (response) => response.json()).then(async (responseJson) => {
+          console.log(responseJson)
+          if(responseJson.status){
+            await AsyncStorage.setItem("id_bc", responseJson.data.id_bc);
+            await AsyncStorage.setItem("id_sb", responseJson.data.id_sb);
+            await AsyncStorage.setItem("evoke_token", responseJson.token);
+            this.goToProfile();
+          }else{
+              Alert.alert(
+                  '',
+                  'Ha ocurrido un error, intentalo nuevamente',
+                  [ {text: 'Ok'} ]
+              );
+          }
+      }).catch((error) => {
+          console.error(error);
+      });
+
+  }
 
   signOut = async () => {
     try {
