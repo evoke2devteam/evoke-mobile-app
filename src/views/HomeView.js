@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppRegistry, Button, View, ImageBackground } from 'react-native';
+import { AppRegistry, Button, View, ImageBackground, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {GoogleSignin} from "react-native-google-signin";
 import Constants from "../utils/Constants";
@@ -35,7 +35,7 @@ export default class HomeView extends React.Component {
         const isSignedIn = await GoogleSignin.isSignedIn();
 
         if(isSignedIn){
-            this.state.navigate('ProfileView');
+            this.state.navigate('TabNavigator');
         }else{
             this.state.navigate('AuthView');
         }
@@ -80,28 +80,39 @@ export default class HomeView extends React.Component {
     }
 }
 
-const styles = {
+const styles =  StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        
     },
     background: {
         width: '100%',
         height: '100%',
         resizeMode: 'cover',
+        color:'#979797',
         flex: 1
     },
     container_button: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        flex: 3,
+        justifyContent: 'space-between',
+        alignContent:"center",
+        paddingBottom: 200,
+        paddingTop:200,
+        marginLeft:10,
+        marginRight:10,
+        color:'red',
     },
     button: {
         flex: 1,
         width: '100%',
+        height:'100%',
+        alignContent:"center",
         backgroundColor: 'transparent',
-        top: 50
+        top: 50,
+
+        
     }
-};
+});
 
 AppRegistry.registerComponent('HomeView', () => HomeView);

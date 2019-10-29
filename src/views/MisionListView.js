@@ -5,9 +5,9 @@ import StringsLanguage from '../utils/StringsLanguage';
 import MissionsData from '../data/missions';
 import AsyncStorage from "@react-native-community/async-storage";
 
-export default class MisionDetailView extends React.Component {
+export default class MisionListView extends React.Component {
     static navigationOptions = {
-        title: 'Evoke'
+        title: 'Missions'
     };
     constructor(props) {
         super(props);
@@ -52,4 +52,4 @@ const styles = {
     }
 };
 
-AppRegistry.registerComponent('MisionDetailView', () => MisionDetailView);
+AppRegistry.registerComponent('MisionListView', () => MisionListView);

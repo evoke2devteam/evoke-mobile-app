@@ -11,6 +11,9 @@ import CartoonView from './src/views/CartoonView';
 import EvidenceView from './src/views/EvidenceView';
 import SettingsView from './src/views/SettingsView';
 import CodeValidationView from './src/views/CodeValidationView';
+import SkillsView from './src/views/SkillsView';
+import TabNavigator from './src/views/TabNavigator';
+
 
 const MainNavigator = createStackNavigator({
     HomeView: {screen: HomeView},
@@ -23,6 +26,8 @@ const MainNavigator = createStackNavigator({
     EvidenceView: {screen: EvidenceView},
     SettingsView: {screen: SettingsView},
     CodeValidationView: {screen: CodeValidationView},
+    SkillsView: {screen: SkillsView},
+    TabNavigator: {screen: TabNavigator},
 });
 
 const App = createAppContainer(MainNavigator);

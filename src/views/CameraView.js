@@ -52,11 +52,14 @@ export default class CameraView extends React.Component {
     }
 
     async takePicture() {
+        
         if (this.camera) {
-            const options = { quality: 0.5 };
+            const options = { quality: 0.5, base64: true };
             try {
+                
                 const data = await this.camera.takePictureAsync(options);
-                this.state.navigate('EvidenceView', { pathPhoto: data.uri, mision: this.state.mision, activity: this.state.activity })
+                console.log(data);
+                this.state.navigate('EvidenceView', { pathPhoto: data.base64, mision: this.state.mision, activity: this.state.activity })
             }catch (e) {
                 Alert.alert('error', e.toString())
             }
