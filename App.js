@@ -6,7 +6,6 @@ import AuthView from './src/views/AuthView';
 import ProfileView from './src/views/ProfileView';
 import CampaignListView from './src/views/CampaignListView';
 import CampaignDetailView from './src/views/CampaignDetailView';
-import CartoonView from './src/views/CartoonView';
 import EvidenceView from './src/views/EvidenceView';
 import SettingsView from './src/views/SettingsView';
 import CodeValidationView from './src/views/CodeValidationView';
@@ -22,7 +21,6 @@ const MainNavigator = createStackNavigator({
     ProfileView: {screen: ProfileView},
     CampaignListView: {screen: CampaignListView},
     CampaignDetailView: {screen: CampaignDetailView},
-    CartoonView: {screen: CartoonView},
     EvidenceView: {screen: EvidenceView},
     SettingsView: {screen: SettingsView},
 });

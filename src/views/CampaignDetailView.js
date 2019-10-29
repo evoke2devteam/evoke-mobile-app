@@ -31,7 +31,7 @@ export default class CampaignDetailView extends React.Component {
                                 chevron = { !item.completed }
                                 checkmark = { item.completed }
                                 disabled={ item.lock }
-                                onPress={() => { this.state.navigate('CartoonView', {campaign: this.state.campaign, mission: item.id}) }}
+                                onPress={() => { this.state.navigate('EvidenceView', {campaign: this.state.campaign, mission: item.id}) }}
                             />
                         ))
                     }
