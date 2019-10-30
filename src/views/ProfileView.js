@@ -1,8 +1,9 @@
 import React from 'react';
-import { AppRegistry, Image, View, Text, TouchableHighlight } from 'react-native';
+import {AppRegistry, Image, View, Text, TouchableHighlight, AsyncStorage} from 'react-native';
 import { GoogleSignin } from 'react-native-google-signin';
 import StringsLanguage from '../utils/StringsLanguage';
 import { Icon } from 'react-native-elements';
+import Config from "../utils/Constants";
 
 export default class ProfileView extends React.Component {
 
@@ -11,7 +12,8 @@ export default class ProfileView extends React.Component {
         this.state = {
             navigate: this.props.navigation.navigate,
             userInfo: {},
-            evocoins: 0,
+            evocoins: '',
+            rubies: '',
             language: (!!this.props.navigation.getParam('language')) ? this.props.navigation.navigate.getParam('language') : null
         }
     }
@@ -21,13 +23,14 @@ export default class ProfileView extends React.Component {
     };
 
     async componentDidMount(): void {
+        let idGoogle = await AsyncStorage.getItem("id_gg");
+        let evokeToken = await AsyncStorage.getItem("evoke_token");
         const userInfo = await GoogleSignin.getCurrentUser();
         this.setState({userInfo: userInfo.user});
-        this.getEvocoins();
+        this.getCurrences(idGoogle, evokeToken);
     }
 
     render() {
-        const {navigate} = this.props.navigation;
         return (
 
             <View style={styles.container}>
@@ -74,33 +77,37 @@ export default class ProfileView extends React.Component {
                 <View style={styles.container_buttons}>
                     <View style={styles.item}>
                         <Text style={styles.text_buttons}>Evocoins {"\n"} {this.state.evocoins}</Text>
+                        <Text style={styles.text_buttons}>Rubies {"\n"} {this.state.rubies}</Text>
                     </View>
                     <TouchableHighlight style={styles.item} onPress={() => this.state.navigate('CampaignListView')}>
                         <View>
                             <Text style={styles.text_buttons}>{StringsLanguage.view_missions_button}</Text>
                         </View>
-                    </TouchableHighlight >
+                    </TouchableHighlight>
                 </View>
             </View>
         );
     }
 
-    getEvocoins(){
-        fetch('/evocoin/balanceOf', {
+    async getCurrences(idGoogle, evokeToken){
+        fetch(`${Config.API_URL}/account/balance-of`, {
             method: 'POST',
             headers: {
-                Accept: 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${evokeToken}`
             },
             body: JSON.stringify({
-                email: this.state.userInfo.email
+                "id_gg": idGoogle
             }),
         }).then((response) => response.json())
             .then((responseJson) => {
-                this.setState({evocoins: responseJson.evocoins});
+                this.setState({
+                 evocoins: responseJson.evocoin,
+                 rubies: responseJson.rubies
+                });
             })
             .catch((error) => {
-                this.setState({evocoins: 0});
+                this.setState({evocoins: 0, rubies: 0});
                 console.log(error);
             });
     }

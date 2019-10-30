@@ -4,7 +4,6 @@ import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-goog
 import AsyncStorage from "@react-native-community/async-storage";
 import config from "../../config";
 import Config from "../utils/Constants";
-import StringsLanguage from "../utils/StringsLanguage";
 
 export default class AuthView extends React.Component {
 
@@ -90,7 +89,8 @@ export default class AuthView extends React.Component {
       this.setState({ userInfo, error: null });
       const token = await GoogleSignin.getTokens();
       await AsyncStorage.setItem("google_token", token.idToken);
-      this.authEvoke(userInfo.idToken, userInfo.user.name, userInfo.user.email, token.idToken);
+      await AsyncStorage.setItem("id_gg", userInfo.user.id);
+      this.authEvoke(userInfo.user.id, userInfo.user.name, userInfo.user.email, token.idToken);
 
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -124,7 +124,6 @@ export default class AuthView extends React.Component {
               "email": email
           })
       }).then( (response) => response.json()).then(async (responseJson) => {
-          console.log(responseJson)
           if(responseJson.status){
             await AsyncStorage.setItem("id_bc", responseJson.data.id_bc);
             await AsyncStorage.setItem("id_sb", responseJson.data.id_sb);

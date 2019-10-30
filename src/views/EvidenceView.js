@@ -71,7 +71,7 @@ export default class EvidenceView extends React.Component {
             },
             body: JSON.stringify({
                 "mimeType": "image/jpeg",
-                "name": `Evidence mission ${this.state.mission}`,
+                "name": `Evidence_mission_${this.state.mission}`,
                 "id_gg": this.state.idGoogle,
                 "idMission": this.state.mission.toString(),
                 "description": this.state.description,
