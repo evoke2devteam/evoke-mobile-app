@@ -14,12 +14,22 @@ export default class CampaignListlView extends React.Component {
         this.state = {
             navigate: this.props.navigation.navigate,
             list: CampaignsData,
-            language: null
+            language: null,
+            immersion: false
         }
     }
 
     componentDidMount(): void {
         AsyncStorage.getItem('language').then((language) => this.setState({language}));
+        AsyncStorage.getItem('immersion').then((flag) => {if(flag === 'true') this.setState({immersion: true})});
+    }
+
+    goToCampaignDetail(campaign){
+        if(campaign.id === 1){
+            this.state.navigate('ImmersionView');
+        }else{
+            this.state.navigate('CampaignDetailView', { campaign: campaign });
+        }
     }
 
     render() {
@@ -34,7 +44,9 @@ export default class CampaignListlView extends React.Component {
                             title={item.title}
                             topDivider
                             chevron
-                            onPress={() => { this.state.navigate('CampaignDetailView', {campaign: item}) }}
+                            checkmark = { (this.state.immersion && item.id === 1)}
+                            disabled={(this.state.immersion && item.id === 1)}
+                            onPress={() => this.goToCampaignDetail(item)}
                         />
                     ))
                 }
