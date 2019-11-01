@@ -9,9 +9,12 @@ import CampaignDetailView from './src/views/CampaignDetailView';
 import EvidenceView from './src/views/EvidenceView';
 import SettingsView from './src/views/SettingsView';
 import CodeValidationView from './src/views/CodeValidationView';
+import SkillsView from './src/views/SkillsView';
+import TabNavigator from './src/views/TabNavigator';
 import IntroView from './src/views/IntroView';
 import LoadingView from './src/views/LoadingView';
 import ImmersionView from './src/views/ImmersionView';
+
 
 const MainNavigator = createStackNavigator({
     LoadingView: {screen: LoadingView},
@@ -25,6 +28,8 @@ const MainNavigator = createStackNavigator({
     EvidenceView: {screen: EvidenceView},
     SettingsView: {screen: SettingsView},
     ImmersionView: {screen: ImmersionView},
+    SkillsView: {screen: SkillsView},
+    TabNavigator: {screen: TabNavigator},
 });
 
 const App = createAppContainer(MainNavigator);

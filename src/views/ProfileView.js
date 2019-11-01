@@ -1,10 +1,11 @@
-import React from 'react';
-import {AppRegistry, Image, View, Text, TouchableHighlight} from 'react-native';
+import React, { Component } from 'react';
+import { AppRegistry, Image, View, Text, TouchableHighlight, Button, ProgressBarAndroid, ImageBackground } from 'react-native';
 import AsyncStorage from "@react-native-community/async-storage";
 import { GoogleSignin } from 'react-native-google-signin';
 import StringsLanguage from '../utils/StringsLanguage';
 import { Icon } from 'react-native-elements';
 import Config from "../utils/Constants";
+
 
 export default class ProfileView extends React.Component {
 
@@ -19,9 +20,6 @@ export default class ProfileView extends React.Component {
         }
     }
 
-    static navigationOptions = {
-        drawerLabel: 'Home'
-    };
 
     async componentDidMount(): void {
         let idGoogle = await AsyncStorage.getItem("id_gg");
@@ -31,62 +29,77 @@ export default class ProfileView extends React.Component {
         this.getCurrences(idGoogle, evokeToken);
     }
 
+
+
     render() {
         return (
+            <ImageBackground source={require('../res/images/fondoCirculo.jpg')} style={{ width: '100%', height: '100%' }}>
+                <View style={styles.container}>
 
-            <View style={styles.container}>
-                <View style={styles.container_username}>
-                    <Text style={styles.username}> {(!!this.state.userInfo.name) ? this.state.userInfo.name : 'Ha ocurrido un problema' } </Text>
-                </View>
-                <View>
                     <View>
-                        <Image
-                            style={styles.avatar}
-                            source={require('../res/images/avatar.png')}
-                        />
+                        <View opacity={0.76}>
+                            <ImageBackground style={{ height: '27%', width: '100%', left: '5%', top: '0.1%' }}
+                                source={require('../res/images/cajaCounter.png')}>
+                                <Image source={require('../res/images/EvocointIcon.png')} style={{ height: '10%', width: '8%', top: '3.5%', left: '70%' }} />
+                                <Text style={{ height: '10%', width: '10%', bottom: '6%', left: '82%', color: 'white', fontSize: 26 }}>60</Text>
+                                <Text style={{ height: '10%', bottom: '5%', left: '82%', color: 'white', fontSize: 12 }}>Evocoints</Text>
+                                <Image source={require('../res/images/rubiesIcon.png')} style={{ height: '10%', width: '8%', bottom: '26%', left: '41%' }} />
+                                <Text style={{ height: '10%', bottom: '36%', left: '53%', color: 'white', fontSize: 26 }}>1234</Text>
+                                <Text style={{ height: '10%', bottom: '35%', left: '54%', color: 'white', fontSize: 12 }}>Rubies</Text>
+                            </ImageBackground>
+                            <Text style={styles.container_Start}>Perfil</Text>
+                            <ImageBackground
+                                style={{ height: '54.5%', width: '100%', bottom: '23%' }}
+                                source={require('../res/images/containerCentral.png')}>
+                                {/* contenido */}
+                                <Image source={require('../res/images/avatar.png')} style={{ height: '45%', width: '36%', top: '3%', left: '33%' }} />
+                                <Text style={{ color: 'white', fontSize: 50, bottom: '5%', left: '77%' }}>1</Text>
+                                <ProgressBarAndroid styleAttr="Horizontal" color="#3fa9f5" indeterminate={false}
+                                    progress={0.2} style={{ width: '20%', height: '100%', marginLeft: '30%', bottom: '55%' }} />
+                                <Text style={{ color: 'white', fontSize: 20, bottom: '107%', left: '17%' }}>Nivel</Text>
+                                <Text style={{ color: 'white', fontSize: 11, bottom: '106%', left: '17%' }}>100</Text>
+                                <Text style={{ color: 'white', fontSize: 11, bottom: '108.2%', left: '22%', fontWeight: 'bold' }}>/</Text>
+                                <Text style={{ color: 'white', fontSize: 11, bottom: '110.4%', left: '22.8%', fontWeight: 'bold' }}>150</Text>
+                            </ImageBackground>
+                            <View>
+                                <ImageBackground
+                                    style={{ height: '39%', width: '100%', bottom: '103.8%' }}
+                                    source={require('../res/images/boton.png')}>
+                                    <View style={styles.container_buttons}>
+                                        <Button title="Jugar" color="#474d791A" />
+                                    </View>
+                                </ImageBackground>
+                                <Text style={{ color: 'white', fontSize: 20, bottom: '113%', left: '4%' }}>Habilidad</Text>
+                                <Text style={{ color: 'white', fontSize: 20, bottom: '117.6%', left: '42%' }}>Tienda</Text>
+                                <Text style={{ color: 'white', fontSize: 20, bottom: '122%', left: '81%' }}>Equipo</Text>
+                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:1,width:1,left:'6%'}}>
+                                    <Image
+                                        source={require('../res/images/habilidades.png')}
+                                    />
+                                </TouchableHighlight>
+                    
+                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:1,width:1,left:'40%'}}>
+                                    <Image
+                                        source={require('../res/images/carrito.png')}
+                                    />
+                                </TouchableHighlight>
+                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:1,width:1,left:'80%'}}>
+                                    <Image
+                                        source={require('../res/images/equipo.png')}
+                                    />
+                                </TouchableHighlight>
+                                
+                            </View>
+                     
+
+                        </View>
+
+
                     </View>
 
-                    <View style={styles.container_skill_1}>
-                        <Image
-                            style={styles.skill}
-                            source={require('../res/images/skill_1.png')}
-                        />
-                    </View>
-                    <View style={styles.container_skill_2}>
-                        <Image
-                            style={styles.skill}
-                            source={require('../res/images/skill_2.png')}
-                        />
-                    </View>
-                    <View style={styles.container_skill_3}>
-                        <Image
-                            style={styles.skill}
-                            source={require('../res/images/skill_3.png')}
-                        />
-                    </View>
-                    <View style={styles.container_settings}>
-                        <Icon
-                            reverse
-                            name='ios-settings'
-                            type='ionicon'
-                            color='#517fa4'
-                            size={23}
-                            onPress={() => {this.state.navigate('SettingsView')} }
-                        />
-                    </View>
+
                 </View>
-                <View style={styles.container_buttons}>
-                    <View style={styles.item}>
-                        <Text style={styles.text_buttons}>Evocoins {"\n"} {this.state.evocoins}</Text>
-                        <Text style={styles.text_buttons}>Rubies {"\n"} {this.state.rubies}</Text>
-                    </View>
-                    <TouchableHighlight style={styles.item} onPress={() => this.state.navigate('CampaignListView')}>
-                        <View>
-                            <Text style={styles.text_buttons}>{StringsLanguage.view_missions_button}</Text>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-            </View>
+            </ImageBackground>
         );
     }
 
@@ -112,74 +125,76 @@ export default class ProfileView extends React.Component {
                 console.log(error);
             });
     }
+
+
 }
 const styles = {
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#666666'
+        flexDirection: 'column',
     },
-    container_username:{
-        width: '100%',
+    container_username: {
+        width: '50%',
+        justifyContent: 'flex-start',
+        paddingLeft: '20%',
+        marginRight: '80%'
 
     },
-    username: {
-        marginTop: 10,
-        color: '#fff',
-        textAlign: 'right',
+    container_Start: {
         width: '100%',
-        paddingRight: 10
+        color: '#14def4',
+        fontSize: 30,
+        fontWeight: 'bold',
+        marginRight: '80%',
+        bottom: '25%'
     },
-    avatar:{
-        height: 200,
-        width: 200,
-        marginTop: 40
+    username: {
+        color: '#fff',
+        textAlign: 'left',
+        width: '100%',
+        justifyContent: 'space-between'
     },
-    container_skill_1: {
-        position: 'absolute',
-        left: -40,
-        top: 40
+    avatar: {
+        height: '60%',
+        width: '50%',
+        marginTop: '4%',
+        marginLeft: '25%',
+
     },
-    container_skill_2: {
-        position: 'absolute',
-        left: -60,
-        top: 110
-    },
-    container_skill_3: {
-        position: 'absolute',
-        left: -50,
-        top: 180
-    },
-    skill:{
-        height: 70,
-        width: 50,
+    skill: {
+        bottom: '20%',
+
+
     },
     container_buttons: {
-        flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
-        marginTop: 30
+        height: 500,
+        top: '13%',
+        left: '9%',
+        width: '84%'
     },
-    item:{
+    item: {
         width: '48%',
         alignItems: 'center',
         marginLeft: '1%',
-        borderWidth: 0.5,
-        borderColor: '#d6d7da',
-        borderRadius: 4,
-        minHeight: 90
+        borderWidth: 1,
+        borderColor: '#000000',
+        borderRadius: 20,
+        minHeight: 80,
+        marginTop: 150,
+        backgroundColor: 'white',
+
     },
     text_buttons: {
-        fontSize: 31,
-        color: '#fff',
+        fontSize: 28,
+        color: '#000',
         fontWeight: 'bold',
         textAlign: 'center',
     },
     container_settings: {
         position: 'absolute',
-        right: -50,
-        top: 180
+        right: '1%',
+        top: '40%'
     }
 };
 

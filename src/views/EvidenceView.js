@@ -5,6 +5,8 @@ import StringsLanguage from '../utils/StringsLanguage';
 import { GoogleSignin } from 'react-native-google-signin';
 import Config from '../utils/Constants';
 
+
+
 export default class EvidenceView extends React.Component {
     static navigationOptions = {
         title: 'Evoke'
@@ -31,6 +33,42 @@ export default class EvidenceView extends React.Component {
     static getDerivedStateFromProps(nextProps) {
         return {pathPhoto: nextProps.navigation.getParam('pathPhoto')};
     }
+    
+
+    GoogleDrive = async () => {
+        
+        var token= await GoogleSignin.getTokens();
+        console.log(token.accessToken);
+        console.log(this.state.image);
+            fetch('https://40.117.251.50/save-drive', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    access_token:token.accessToken,
+                    mimeType: 'image/jpeg',
+                    name: 'imagen1',
+                    image: this.state.image
+                }),
+                
+            }).then((response) => response.json()).then((responseJson) => {
+                console.log(responseJson);
+                if(responseJson.status){
+                console.log('guardada');
+                ToastAndroid.show('Imagen guardada exitosamente!')
+                }else{
+                console.log('error');
+                ToastAndroid.show('Error al subir imagen')
+                }
+                console.log(responseJson);
+            });
+        
+        
+        
+    }
+
 
     render() {
         return (

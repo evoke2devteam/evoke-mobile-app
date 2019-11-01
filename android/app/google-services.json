@@ -1,34 +1,43 @@
 {
   "project_info": {
-    "project_number": "130442303187",
-    "firebase_url": "https://skillful-portal-252615.firebaseio.com",
-    "project_id": "skillful-portal-252615",
-    "storage_bucket": "skillful-portal-252615.appspot.com"
+    "project_number": "117767421307",
+    "firebase_url": "https://evoke-2581114.firebaseio.com",
+    "project_id": "evoke-2581114",
+    "storage_bucket": "evoke-2581114.appspot.com"
+    
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:130442303187:android:2c2e3ab7fb3efced77e626",
+        "mobilesdk_app_id": "1:117767421307:android:30fd9e8d11ebfdf60d11de",
         "android_client_info": {
           "package_name": "com.evoke"
         }
       },
       "oauth_client": [
         {
-          "client_id": "130442303187-mn6eee3f8nj26ls8ike2685qoi2uk8gq.apps.googleusercontent.com",
+          "client_id": "117767421307-ko68q52jp7hi8ps8h4tuqg9u6pf5eltq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.evoke",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "117767421307-l5bhjsep9cvfd53a76nngedeo6jd1192.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCOyp8dIqgz4n2R8swrb1lX8CQTezB7AUk"
+          "current_key": "AIzaSyDzSLVPg0nBRuBZsD7Hh_F34pri7bBjt4g"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "130442303187-mn6eee3f8nj26ls8ike2685qoi2uk8gq.apps.googleusercontent.com",
+              "client_id": "117767421307-l5bhjsep9cvfd53a76nngedeo6jd1192.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
