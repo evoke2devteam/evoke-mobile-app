@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { AppRegistry, Image, View, Text, TouchableHighlight, Button, ProgressBarAndroid } from 'react-native';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import ProfileView from './ProfileView';
+import SocialView from './SocialView';
+import MisionDetailView from './MisionDetailView';
 import DrawerView from './DrawerView';
 import CampaignListView from "./CampaignListView";
 import CampaignDetailView from "./CampaignDetailView";
@@ -17,7 +19,7 @@ export default createMaterialTopTabNavigator({
             )
         }
     },
-    Missions: { screen: CampaignListView, navigationOptions: {
+    Social: { screen: SocialView, navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
             <Image source={require('../res/images/socialIcon.png')} style={{height:'235%', width:'200%', bottom:15}} />
         )
@@ -37,7 +39,7 @@ export default createMaterialTopTabNavigator({
 
 }, {
     initialRouteName: 'Profile',
-    order: ['Profile', 'Missions', 'Notification', 'Drawer'],
+    order: ['Profile', 'Social', 'Notification', 'Drawer'],
     activeTintColor: 'blue',
     tabBarOptions: {
         activeTintColor:'#3b415b',
