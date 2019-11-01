@@ -49,13 +49,13 @@ export default class ProfileView extends React.Component {
                                 source={require('../res/images/containerCentral.png')}>
                                 {/* contenido */}
                                 <Image source={require('../res/images/avatar.png')} style={{ height: '45%', width: '36%', top: '3%', left: '33%' }} />
-                                <Text style={{ color: 'white', fontSize: 50, bottom: '1%', left: '77%' }}>1</Text>
+                                <Text style={{ color: 'white', fontSize: 50, bottom: '5%', left: '77%' }}>1</Text>
                                 <ProgressBarAndroid styleAttr="Horizontal" color="#3fa9f5" indeterminate={false}
-                                    progress={0.2} style={{ width: '20%', height: '100%', marginLeft: '30%', bottom: '51%' }} />
-                                <Text style={{ color: 'white', fontSize: 20, bottom: '103%', left: '17%' }}>Nivel</Text>
-                                <Text style={{ color: 'white', fontSize: 11, bottom: '102%', left: '17%' }}>100</Text>
-                                <Text style={{ color: 'white', fontSize: 11, bottom: '104.2%', left: '22%', fontWeight: 'bold' }}>/</Text>
-                                <Text style={{ color: 'white', fontSize: 11, bottom: '106.4%', left: '22.8%', fontWeight: 'bold' }}>150</Text>
+                                    progress={0.2} style={{ width: '20%', height: '100%', marginLeft: '30%', bottom: '55%' }} />
+                                <Text style={{ color: 'white', fontSize: 20, bottom: '107%', left: '17%' }}>Nivel</Text>
+                                <Text style={{ color: 'white', fontSize: 11, bottom: '106%', left: '17%' }}>100</Text>
+                                <Text style={{ color: 'white', fontSize: 11, bottom: '108.2%', left: '22%', fontWeight: 'bold' }}>/</Text>
+                                <Text style={{ color: 'white', fontSize: 11, bottom: '110.4%', left: '22.8%', fontWeight: 'bold' }}>150</Text>
                             </ImageBackground>
                             <View>
                                 <ImageBackground
@@ -86,25 +86,7 @@ export default class ProfileView extends React.Component {
                                 </TouchableHighlight>
                                 
                             </View>
-                            {/* <View>
-                        <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1}>
-                        <Image
-                            source={require('../res/images/habilidades.png')}
-                        />
-                        </TouchableHighlight>
-                        <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1}>
-                        <Image
-                            style={styles.skill}
-                            source={require('../res/images/skill_1.png')}
-                        />
-                        </TouchableHighlight>
-                        <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1}>
-                        <Image
-                            style={styles.skill}
-                            source={require('../res/images/skill_1.png')}
-                        />
-                        </TouchableHighlight>
-                        </View> */}
+                     
 
                         </View>
 
