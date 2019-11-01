@@ -1,7 +1,9 @@
 import React from 'react';
-import {AppRegistry, ScrollView, Text, Button, TextInput, Alert, Image} from 'react-native';
+import {AppRegistry, ScrollView, Text, Button, TextInput, Image, Alert} from 'react-native';
 import { Icon } from 'react-native-elements';
 import StringsLanguage from '../utils/StringsLanguage';
+import { GoogleSignin } from 'react-native-google-signin';
+import Config from '../utils/Constants';
 
 export default class EvidenceView extends React.Component {
     static navigationOptions = {
@@ -11,39 +13,88 @@ export default class EvidenceView extends React.Component {
         super(props);
         this.state = {
             navigate: this.props.navigation.navigate,
-            mision: this.props.navigation.getParam('mision'),
-            activity: this.props.navigation.getParam('activity')
+            campaign: this.props.navigation.getParam('campaign'),
+            mission: this.props.navigation.getParam('mission'),
+            description: null,
+            idGoogle: null,
+            accessToken: null
         }
+        this.sendEvidence = this.sendEvidence.bind(this);
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
+    async componentDidMount() {
+        let googleInfo = await GoogleSignin.signIn();
+        let tokensInfo = await GoogleSignin.getTokens();
+        this.setState({idGoogle: googleInfo.user.id, accessToken: tokensInfo.accessToken});
+    }
+
+    static getDerivedStateFromProps(nextProps) {
         return {pathPhoto: nextProps.navigation.getParam('pathPhoto')};
     }
 
     render() {
         return (
             <ScrollView>
-                <Text style={styles.title}>{StringsLanguage.title_section_evidence} {this.state.activity}</Text>
+                <Text style={styles.title}>{StringsLanguage.title_section_evidence} {this.state.mission}</Text>
                 { (this.state.pathPhoto) ?
-                    <Image style={{width: 200, height: 200}} source={{uri: this.state.pathPhoto, isStatic:true}}/> :
+                    <Image style={{width: 200, height: 200}} source={{uri: `data:image/jpeg;base64,${this.state.pathPhoto}`, isStatic:true}}/> :
                     <Icon
                         reverse
                         name='ios-camera'
                         type='ionicon'
                         color='#517fa4'
                         size={40}
-                        onPress={() => {this.state.navigate('CameraView', {mision: this.state.mision, activity: this.state.activity})} }
+                        onPress={() => {this.state.navigate('CameraView', {campaign: this.state.campaign, mission: this.state.mission})} }
                     />
 
                 }
 
                 <TextInput
                     style={styles.textInput}
+                    onChangeText={(description) => this.setState({description})}
                     placeholder={StringsLanguage.evidence_placeholder_description}
                 />
-                <Button title={StringsLanguage.send_evidence_button} onPress={() => this.state.navigate('MisionDetailView', {mison: this.state.mision})}/>
-            </ScrollView>
+
+                <Button title={StringsLanguage.send_evidence_button} onPress={this.sendEvidence}/>
+                <Button title={StringsLanguage.back_to_campaign_button} onPress={() => this.state.navigate('CampaignDetailView', {campaign: this.state.campaign})}/>
+
+
+        </ScrollView>
         );
+    }
+
+    sendEvidence(){
+        fetch(`${Config.API_URL}/submit-drive`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "mimeType": "image/jpeg",
+                "name": `Evidence_mission_${this.state.mission}`,
+                "id_gg": this.state.idGoogle,
+                "idMission": this.state.mission.toString(),
+                "description": this.state.description,
+                "image": `data:image/jpeg;base64,${this.state.pathPhoto}`,
+                "access_token": this.state.accessToken
+            })
+        }).then((response) => response.json()).then((responseJson) => {
+            if(responseJson.status){
+                Alert.alert(
+                    '',
+                    StringsLanguage.send_evidence_success,
+            [ {text: 'Ok', onPress: () => this.state.navigate('CampaignDetailView', {campaign: this.state.campaign})} ]
+                );
+            }else{
+                Alert.alert(
+                    '',
+                    StringsLanguage.send_evidence_error,
+                    [ {text: 'Ok'} ]
+                );
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
     }
 }
 

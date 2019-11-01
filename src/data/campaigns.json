@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "title": "Campaña 1",
+    "description": "Descripción de la Campaña 1",
+    "advance": 0,
+    "lock": false,
+    "tags": ["es-co"],
+    "missions": [
+      {
+        "id": 1,
+        "description": "Descripción de la misión 1",
+        "completed": true
+      },
+      {
+        "id": 2,
+        "description": "Descripción de la misión 2",
+        "completed": false
+      },
+      {
+        "id": 3,
+        "description": "Descripción de la misión 3",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Campaña 2",
+    "description": "Descripción de la Campaña 2",
+    "advance": 0,
+    "lock": true,
+    "tags": ["es-co"],
+    "missions": [
+      {
+        "id": 4,
+        "description": "Descripción de la misión 1",
+        "completed": true
+      },
+      {
+        "id": 5,
+        "description": "Descripción de la misión 2",
+        "completed": true
+      },
+      {
+        "id": 6,
+        "description": "Descripción de la misión 3",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "title": "Campaign 1",
+    "description": "Campaign 1 description",
+    "advance": 0,
+    "lock": false,
+    "tags": ["en-us"],
+    "missions": [
+      {
+        "id": 1,
+        "description": "Mission 1 description",
+        "completed": true
+      },
+      {
+        "id": 2,
+        "description": "Mission 2 description",
+        "completed": false
+      },
+      {
+        "id": 3,
+        "description": "Mission 3 description",
+        "completed": true
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Campaign 2",
+    "description": "Campaign 2 description",
+    "advance": 0,
+    "lock": true,
+    "tags": ["en-us"],
+    "missions": [
+      {
+        "id": 1,
+        "description": "Mission 1 description",
+        "completed": true
+      },
+      {
+        "id": 2,
+        "description": "Mission 2 description",
+        "completed": true
+      },
+      {
+        "id": 3,
+        "description": "Mission 3 description",
+        "completed": false
+      }
+    ]
+  }
+]

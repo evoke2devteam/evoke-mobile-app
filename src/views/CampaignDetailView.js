@@ -3,7 +3,7 @@ import { AppRegistry, View, Text } from 'react-native';
 import {ListItem} from "react-native-elements";
 import StringsLanguage from '../utils/StringsLanguage';
 
-export default class MisionDetailView extends React.Component {
+export default class CampaignDetailView extends React.Component {
     static navigationOptions = {
         title: 'Evoke'
     };
@@ -11,27 +11,27 @@ export default class MisionDetailView extends React.Component {
         super(props);
         this.state = {
             navigate: this.props.navigation.navigate,
-            mision: this.props.navigation.getParam('mision')
+            campaign: this.props.navigation.getParam('campaign')
         }
     }
     render() {
         return (
             <View>
-                <Text style={styles.title}>{this.state.mision.title}</Text>
-                <Text style={styles.description}>{this.state.mision.description}</Text>
-                <Text style={styles.subtitle}>{StringsLanguage.subtitle_section_mission}</Text>
+                <Text style={styles.title}>{this.state.campaign.title}</Text>
+                <Text style={styles.description}>{this.state.campaign.description}</Text>
+                <Text style={styles.subtitle}>{StringsLanguage.subtitle_section_campaign}</Text>
 
                 <View>
                     {
-                        this.state.mision.activities.map((item, i) => (
+                        this.state.campaign.missions.map((item, i) => (
                             <ListItem
                                 key={i}
                                 title={item.description}
                                 topDivider
                                 chevron = { !item.completed }
                                 checkmark = { item.completed }
-                                disabled={item.completed}
-                                onPress={() => { this.state.navigate('EvidenceView', {mision: this.state.mision, activity: item.id}) }}
+                                disabled={ item.lock }
+                                onPress={() => { this.state.navigate('EvidenceView', {campaign: this.state.campaign, mission: item.id}) }}
                             />
                         ))
                     }
@@ -63,4 +63,4 @@ const styles = {
     }
 };
 
-AppRegistry.registerComponent('MisionDetailView', () => MisionDetailView);
+AppRegistry.registerComponent('CampaignDetailView', () => CampaignDetailView);
