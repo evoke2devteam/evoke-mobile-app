@@ -1,5 +1,6 @@
 import React from 'react';
-import {AppRegistry, Image, View, Text, TouchableHighlight, AsyncStorage} from 'react-native';
+import {AppRegistry, Image, View, Text, TouchableHighlight} from 'react-native';
+import AsyncStorage from "@react-native-community/async-storage";
 import { GoogleSignin } from 'react-native-google-signin';
 import StringsLanguage from '../utils/StringsLanguage';
 import { Icon } from 'react-native-elements';
