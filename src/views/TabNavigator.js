@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { AppRegistry, Image, View, Text, TouchableHighlight, Button, ProgressBarAndroid } from 'react-native';
-import { ThemeProvider } from 'react-native-elements';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import ProfileView from './ProfileView';
-import MisionListView from './MisionListView';
-import MisionDetailView from './MisionDetailView';
 import DrawerView from './DrawerView';
+import CampaignListView from "./CampaignListView";
+import CampaignDetailView from "./CampaignDetailView";
 
 
 
@@ -18,12 +17,12 @@ export default createMaterialTopTabNavigator({
             )
         }
     },
-    Missions: { screen: MisionListView, navigationOptions: {
+    Missions: { screen: CampaignListView, navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
             <Image source={require('../res/images/socialIcon.png')} style={{height:'235%', width:'200%', bottom:15}} />
         )
     } },
-    Notification: { screen: MisionDetailView, navigationOptions: {
+    Notification: { screen: CampaignDetailView, navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
             <Image source={require('../res/images/notificationsIcon.png')} style={{height:'235%', width:'200%', bottom:15}} />
         )
@@ -52,7 +51,7 @@ export default createMaterialTopTabNavigator({
             backgroundColor: '#3b415b',
         },
         showIcon: true,
-        
+
 
     }
 

@@ -73,7 +73,7 @@ export default class AuthView extends React.Component {
   }
 
   signIn = async () => {
-   
+
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
@@ -103,6 +103,10 @@ export default class AuthView extends React.Component {
 
 
   };
+
+  goToProfile(){
+      this.state.navigate('ProfileView');
+  }
 
   authEvoke(idGoogle, name, email, authToken){
       fetch(`${Config.API_URL}/account/login`, {
