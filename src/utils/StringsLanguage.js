@@ -20,10 +20,6 @@ const strings = new LocalizedStrings({
         title_toolbar_section_camera: "Camara",
         take_photo_button: "Tomar foto",
 
-        //Cartoon View
-        title_section_cartoon: "Historia gráfica",
-        go_to_form_evidence: "Ir",
-
         //Evidence (Mission) View
         title_section_evidence: "Evidencia Misión",
         evidence_placeholder_description: "Descripción de la evidencia",
@@ -73,10 +69,6 @@ const strings = new LocalizedStrings({
         //Camera View
         title_toolbar_section_camera: "Camera",
         take_photo_button: "Take photo",
-
-        //Cartoon View
-        title_section_cartoon: "Graphic hitory",
-        go_to_form_evidence: "Go",
 
         //Evidence (Mission) View
         title_section_evidence: "Mission Evidence",
