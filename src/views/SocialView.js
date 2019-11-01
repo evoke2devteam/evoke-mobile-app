@@ -5,7 +5,7 @@ import StringsLanguage from '../utils/StringsLanguage';
 import { Icon } from 'react-native-elements';
 
 
-export default class ProfileView extends React.Component {
+export default class SocialView extends React.Component {
 
     constructor(props) {
         super(props);
@@ -29,11 +29,11 @@ export default class ProfileView extends React.Component {
     render() {
 
         return (
-            <ImageBackground source={require('../res/images/fondoCirculo.jpg')} style={{ width: '100%', height: '100%' }}>
+            <ImageBackground source={require('../res/images/fondoSocial.jpg')} style={{ width: '100%', height: '100%' }}>
                 <View style={styles.container}>
 
                     <View>
-                        <View opacity={0.76}>
+                        {/* <View opacity={0.76}>
                             <ImageBackground style={{ height: '27%', width: '100%', left: '5%', top: '0.1%' }}
                                 source={require('../res/images/cajaCounter.png')}>
                                 <Image source={require('../res/images/EvocointIcon.png')} style={{ height: '10%', width: '8%', top: '3.5%', left: '70%' }} />
@@ -46,20 +46,20 @@ export default class ProfileView extends React.Component {
                             <Text style={styles.container_Start}>Perfil</Text>
                             <ImageBackground
                                 style={{ height: '54.5%', width: '100%', bottom: '23%' }}
-                                source={require('../res/images/containerCentral.png')}>
+                                source={require('../res/images/containerCentral.png')}> */}
                                 {/* contenido */}
-                                <Image source={require('../res/images/avatar.png')} style={{ height: '40%', width: '35%', top: '3%', left: '33%' }} />
-                                <Text style={{ color: 'white', fontSize: 40, bottom: '0%', left: '77%' }}>1</Text>
+                                {/* <Image source={require('../res/images/avatar.png')} style={{ height: '45%', width: '36%', top: '3%', left: '33%' }} />
+                                <Text style={{ color: 'white', fontSize: 50, bottom: '5%', left: '77%' }}>1</Text>
                                 <ProgressBarAndroid styleAttr="Horizontal" color="#3fa9f5" indeterminate={false}
-                                    progress={0.2} style={{ width: '20%', height: '100%', marginLeft: '30%', bottom: '49%' }} />
-                                <Text style={{ color: 'white', fontSize: 20, bottom: '101%', left: '17%' }}>Nivel</Text>
-                                <Text style={{ color: 'white', fontSize: 11, bottom: '100%', left: '17%' }}>100</Text>
-                                <Text style={{ color: 'white', fontSize: 11, bottom: '102.2%', left: '22%', fontWeight: 'bold' }}>/</Text>
-                                <Text style={{ color: 'white', fontSize: 11, bottom: '104.4%', left: '22.8%', fontWeight: 'bold' }}>150</Text>
+                                    progress={0.2} style={{ width: '20%', height: '100%', marginLeft: '30%', bottom: '55%' }} />
+                                <Text style={{ color: 'white', fontSize: 20, bottom: '107%', left: '17%' }}>Nivel</Text>
+                                <Text style={{ color: 'white', fontSize: 11, bottom: '106%', left: '17%' }}>100</Text>
+                                <Text style={{ color: 'white', fontSize: 11, bottom: '108.2%', left: '22%', fontWeight: 'bold' }}>/</Text>
+                                <Text style={{ color: 'white', fontSize: 11, bottom: '110.4%', left: '22.8%', fontWeight: 'bold' }}>150</Text>
                             </ImageBackground>
                             <View>
                                 <ImageBackground
-                                    style={{ height: '39%', width: '100%', bottom: '100.8%' }}
+                                    style={{ height: '39%', width: '100%', bottom: '103.8%' }}
                                     source={require('../res/images/boton.png')}>
                                     <View style={styles.container_buttons}>
                                         <Button title="Jugar" color="#474d791A" />
@@ -68,27 +68,27 @@ export default class ProfileView extends React.Component {
                                 <Text style={{ color: 'white', fontSize: 20, bottom: '113%', left: '4%' }}>Habilidad</Text>
                                 <Text style={{ color: 'white', fontSize: 20, bottom: '117.6%', left: '42%' }}>Tienda</Text>
                                 <Text style={{ color: 'white', fontSize: 20, bottom: '122%', left: '81%' }}>Equipo</Text>
-                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:'1%',width:'1%',left:'6%'}}>
+                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:1,width:1,left:'6%'}}>
                                     <Image
                                         source={require('../res/images/habilidades.png')}
                                     />
                                 </TouchableHighlight>
                     
-                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:'1%',width:'1%',left:'40%'}}>
+                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:1,width:1,left:'40%'}}>
                                     <Image
                                         source={require('../res/images/carrito.png')}
                                     />
                                 </TouchableHighlight>
-                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:'1%',width:'1%',left:'80%'}}>
+                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:1,width:1,left:'80%'}}>
                                     <Image
                                         source={require('../res/images/equipo.png')}
                                     />
                                 </TouchableHighlight>
                                 
-                            </View>
+                            </View> */}
                      
 
-                        </View>
+                        {/* </View> */}
 
 
                     </View>
@@ -191,4 +191,4 @@ const styles = {
     }
 };
 
-AppRegistry.registerComponent('ProfileView', () => ProfileView);
+AppRegistry.registerComponent('SocialView', () => SocialView);

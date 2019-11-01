@@ -3,7 +3,7 @@ import { AppRegistry, Image, View, Text, TouchableHighlight, Button, ProgressBar
 import { ThemeProvider } from 'react-native-elements';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import ProfileView from './ProfileView';
-import MisionListView from './MisionListView';
+import SocialView from './SocialView';
 import MisionDetailView from './MisionDetailView';
 import DrawerView from './DrawerView';
 
@@ -18,7 +18,7 @@ export default createMaterialTopTabNavigator({
             )
         }
     },
-    Missions: { screen: MisionListView, navigationOptions: {
+    Social: { screen: SocialView, navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
             <Image source={require('../res/images/socialIcon.png')} style={{height:'235%', width:'200%', bottom:15}} />
         )
@@ -38,7 +38,7 @@ export default createMaterialTopTabNavigator({
 
 }, {
     initialRouteName: 'Profile',
-    order: ['Profile', 'Missions', 'Notification', 'Drawer'],
+    order: ['Profile', 'Social', 'Notification', 'Drawer'],
     activeTintColor: 'blue',
     tabBarOptions: {
         activeTintColor:'#3b415b',
