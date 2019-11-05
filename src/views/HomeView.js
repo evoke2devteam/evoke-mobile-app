@@ -94,22 +94,21 @@ const styles =  StyleSheet.create({
         flex: 1
     },
     container_button: {
-        flex: 3,
+        flex: 1,
         justifyContent: 'space-between',
         alignContent:"center",
-        paddingBottom: 200,
-        paddingTop:'65%',
+        paddingBottom: '25%',
+        paddingTop:'55%',
         marginLeft:10,
         marginRight:10,
         color:'red',
     },
     button: {
         flex: 1,
-        width: '100%',
-        height:'100%',
+        width: '50%',
+        height:'60%',
         alignContent:"center",
         backgroundColor: 'transparent',
-        top: '60%',
 
         
     }

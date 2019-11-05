@@ -6,6 +6,10 @@ import ProfileView from './ProfileView';
 import SocialView from './SocialView';
 import MisionDetailView from './MisionDetailView';
 import DrawerView from './DrawerView';
+import {
+    heightPercentageToDP as hp,
+    widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
 
 
@@ -14,23 +18,23 @@ export default createMaterialTopTabNavigator({
         screen: ProfileView,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
-                <Image source={require('../res/images/profileIcon.png')} style={{height:'235%', width:'200%', bottom:15}} />
+                <Image source={require('../res/images/profileIcon.png')} style={{height:hp('6%'), width:wp('11%'),bottom:hp('2.3%')}} />
             )
         }
     },
     Social: { screen: SocialView, navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-            <Image source={require('../res/images/socialIcon.png')} style={{height:'235%', width:'200%', bottom:15}} />
+            <Image source={require('../res/images/socialIcon.png')} style={{height:hp('6%'), width:wp('11%'), bottom:hp('2.1%')}} />
         )
     } },
     Notification: { screen: MisionDetailView, navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-            <Image source={require('../res/images/notificationsIcon.png')} style={{height:'235%', width:'200%', bottom:15}} />
+            <Image source={require('../res/images/notificationsIcon.png')} style={{height:hp('6%'), width:wp('11%'), bottom:hp('2.1%')}} />
         )
     } },
     Drawer: { screen: DrawerView, navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-            <Image source={require('../res/images/drawerIcon.png')} style={{height:'170%', width:'200%', bottom:10}} />
+            <Image source={require('../res/images/drawerIcon.png')} style={{height:hp('6%'), width:wp('15%'), bottom:hp('2%'),right:wp('1.8%')}} />
         )
     } },
 
@@ -45,13 +49,22 @@ export default createMaterialTopTabNavigator({
         inactiveTintColor: '#333947',
         showLabel: false,
         tabStyle: {
-            width: 150,
-            height: 80,
+            flex:1,
+            height:hp('8%'),
+            width:wp('25%')
+            
         },
         style: {
             backgroundColor: '#3b415b',
         },
         showIcon: true,
+        indicatorStyle:{
+            backgroundColor:'#fed945',
+            height:hp('1%'),
+            width:wp('20%'),
+            left:wp('5%'),
+            borderRadius:20
+        }
         
 
     }

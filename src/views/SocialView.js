@@ -29,7 +29,7 @@ export default class SocialView extends React.Component {
     render() {
 
         return (
-            <ImageBackground source={require('../res/images/fondoSocial.jpg')} style={{ width: '100%', height: '100%' }}>
+            <ImageBackground source={require('../res/images/fondoSocial.jpg')} style={{ width: '100%', height: '80%' }}>
                 <View style={styles.container}>
 
                     <View>
