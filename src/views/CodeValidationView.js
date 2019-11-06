@@ -31,7 +31,8 @@ export default class CodeValidationView extends React.Component {
     }
 
     codeValidate(){
-        fetch(`${Config.API_URL}/invitation/check`, {
+        this.state.navigate('IntroView');
+        /*fetch(`${Config.API_URL}/invitation/check`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +61,7 @@ export default class CodeValidationView extends React.Component {
             }
         }).catch((error) => {
             console.error(error);
-        });
+        });*/
     }
 
     render() {

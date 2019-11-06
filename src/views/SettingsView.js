@@ -27,7 +27,8 @@ export default class SettingsView extends React.Component {
     }
 
     getCodeInvitation(){
-        fetch(`${Config.API_URL}/invitation/generate`, {
+        this.setState({invitationCode: 'Evoke'});
+        /*fetch(`${Config.API_URL}/invitation/generate`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +46,7 @@ export default class SettingsView extends React.Component {
             }
         }).catch((error) => {
             console.error(error);
-        });
+        });*/
     }
 
     showCodeInvitation(){
