@@ -47,7 +47,7 @@ export default class ProfileView extends React.Component {
 
                     </ImageBackground>
                     </View>
-                        <View style={{width:wp('100%'), height:hp('40%'),bottom:hp('10%')}}>
+                        <View style={{width:wp('100%'), height:hp('40%'),bottom:hp('10%'),flexDirection:'column'}}>
                         <ImageBackground
                             style={styles.backgroundThree}
                             source={require('../res/images/containerCentral.png')}>
@@ -60,6 +60,7 @@ export default class ProfileView extends React.Component {
                             <Text style={styles.counterPoints}>100</Text>
                             <Text style={styles.separator}>/</Text>
                             <Text style={styles.maxPoints}>150</Text>
+                            
                         </ImageBackground>
                         </View>
                         <View style={{height:hp('20%'),width:wp('90%'),top:hp('1%')}}>
@@ -223,42 +224,48 @@ const styles = {
     experienceCounter: {
         color: 'white',
         fontSize: hp('5%'),
-        top: hp('33.5%'),
-        left: wp('27%'),
+        top: hp('34%'),
+        left: wp('73%'),
+        position:'absolute',
         fontFamily: 'SpaceGrotesk-Medium',
     },
     progressBar: {
         width: wp('35%'),
         transform: [{ scaleX: 1.0 }, { scaleY: 2.5 }],
-        right: wp('23%'),
-        top: hp('17.5%'),
+        left: wp('27%'),
+        position:'absolute',
+        top: hp('38.5%'),
 
     },
     levelLabel: {
         top: hp('38.5%'),
-        right: wp('67%'),
+        left:wp('18%'),
         color: 'white',
         fontSize: hp('2%'),
+        position:'absolute',
         fontFamily: 'SpaceGrotesk-Medium'
     },
     counterPoints: {
         top: hp('42.5%'),
-        right: wp('74%'),
+        right: wp('75%'),
         color: 'white',
         fontSize: hp('1.3%'),
+        position:'absolute',
         fontFamily: 'SpaceGrotesk-Medium'
     },
     separator: {
-        top: hp('42.5%'),
-        right: wp('74%'),
+        top: hp('42%'),
+        right: wp('73%'),
         color: 'white',
+        position:'absolute',
         fontSize: hp('1.6%'),
         fontFamily: 'SpaceGrotesk-Bold'
     },
     maxPoints: {
         top: hp('42.5%'),
-        right: wp('74%'),
+        right: wp('68%'),
         color: 'white',
+        position:'absolute',
         fontSize: hp('1.6%'),
         fontFamily: 'SpaceGrotesk-Bold'
     },
