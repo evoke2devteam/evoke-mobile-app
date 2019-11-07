@@ -1,5 +1,6 @@
 import React from 'react';
-import {AppRegistry, Text, View, Dimensions, Button, Alert, AsyncStorage} from 'react-native';
+import {AppRegistry, Text, View, Dimensions, Button, Alert} from 'react-native';
+import AsyncStorage from "@react-native-community/async-storage";
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import ImmersionData from '../data/inmersion';
 import RadioForm from 'react-native-simple-radio-button';

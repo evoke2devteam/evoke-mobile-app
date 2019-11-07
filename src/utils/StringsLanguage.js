@@ -35,7 +35,7 @@ const strings = new LocalizedStrings({
         title_section_campaign_list: "Campañas",
 
         //Profile View
-        view_missions_button: "Ver misiones",
+        view_missions_button: "Ver campañas",
 
         //Settings View
         title_section_settings: "Configuración",
@@ -85,7 +85,7 @@ const strings = new LocalizedStrings({
         title_section_campaign_list: "Campaigns",
 
         //Profile View
-        view_missions_button: "View missions",
+        view_missions_button: "View campaigns",
 
         //Settings View
         title_section_settings: "Configuration",

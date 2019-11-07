@@ -2,6 +2,7 @@ import React from 'react';
 import {AppRegistry, View, Text, Picker, Button, Alert, Share} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import StringsLanguage from '../utils/StringsLanguage';
+import Config from "../utils/Constants";
 
 export default class SettingsView extends React.Component {
     static navigationOptions = {
@@ -11,19 +12,45 @@ export default class SettingsView extends React.Component {
         super(props);
         this.state ={
             language: null,
-            navigate: this.props.navigation.navigate
+            navigate: this.props.navigation.navigate,
+            authToken: null,
+            invitationCode: null
         };
         AsyncStorage.getItem('language').then(data => {
             this.setState({ 'language': data });
         }).done();
     }
 
+    async componentWillMount(): void {
+        let authToken = await AsyncStorage.getItem('evoke_token');
+        this.setState({authToken})
+    }
+
     getCodeInvitation(){
-        let code = Math.random().toString(36);
-        return code.substring(2, code.length);
+        this.setState({invitationCode: 'Evoke'});
+        /*fetch(`${Config.API_URL}/invitation/generate`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.state.authToken}`
+            }
+        }).then( (response) => response.json()).then(async (responseJson) => {
+            if(responseJson.status){
+                this.setState({invitationCode: responseJson.code});
+            }else{
+                Alert.alert(
+                    '',
+                    'Ha ocurrido un error, intentalo nuevamente',
+                    [ {text: 'Ok'} ]
+                );
+            }
+        }).catch((error) => {
+            console.error(error);
+        });*/
     }
 
     showCodeInvitation(){
+        this.getCodeInvitation();
         Alert.alert(
             StringsLanguage.title_popup_share,
             StringsLanguage.message_popup_share,
@@ -42,18 +69,15 @@ export default class SettingsView extends React.Component {
     }
 
     async shareCodeInvitation(){
-        let code = this.getCodeInvitation();
         try {
             const result = await Share.share({
                 message:
-                `${StringsLanguage.message_share_code} ${code}`,
+                `${StringsLanguage.message_share_code} ${this.state.invitationCode}`,
             });
 
             if (result.action === Share.sharedAction) {
                 if (result.activityType) {
                     console.log('Ok')
-                } else {
-                    //
                 }
             } else if (result.action === Share.dismissedAction) {
                 console.log('cancel')

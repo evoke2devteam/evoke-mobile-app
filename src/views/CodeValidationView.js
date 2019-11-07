@@ -2,6 +2,8 @@ import React from 'react';
 import {AppRegistry, View, TextInput, Alert, Button, Text} from 'react-native';
 import StringsLanguage from '../utils/StringsLanguage';
 import { Icon } from 'react-native-elements';
+import Config from "../utils/Constants";
+import AsyncStorage from "@react-native-community/async-storage";
 
 export default class CodeValidationView extends React.Component {
     static navigationOptions = {
@@ -12,8 +14,14 @@ export default class CodeValidationView extends React.Component {
         this.state = {
             navigate: this.props.navigation.navigate,
             code: null,
-            validating: false
+            validating: false,
+            authToken: null
         };
+    }
+
+    async componentWillMount(): void {
+        let authToken = await AsyncStorage.getItem('evoke_token');
+        this.setState({authToken})
     }
 
     validate(){
@@ -23,21 +31,37 @@ export default class CodeValidationView extends React.Component {
     }
 
     codeValidate(){
-        if(this.state.code){
-            this.state.navigate('IntroView');
-        }else{
-            Alert.alert(
-                StringsLanguage.title_error_validation,
-                StringsLanguage.content_error_validation,
-                [
-                    {
-                        text: StringsLanguage.accept_error_validation
-                    }
-                ],
-                {cancelable: false}
-            );
-            this.setState({validating: false});
-        }
+        this.state.navigate('IntroView');
+        /*fetch(`${Config.API_URL}/invitation/check`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.state.authToken}`
+            },
+            body: JSON.stringify({
+                "code": this.state.code
+            })
+        }).then( (response) => response.json()).then(async (responseJson) => {
+            console.log(responseJson)
+            if(responseJson.status){
+
+                this.state.navigate('IntroView');
+            }else{
+                Alert.alert(
+                    StringsLanguage.title_error_validation,
+                    StringsLanguage.content_error_validation,
+                    [
+                        {
+                            text: StringsLanguage.accept_error_validation
+                        }
+                    ],
+                    {cancelable: false}
+                );
+                this.setState({validating: false});
+            }
+        }).catch((error) => {
+            console.error(error);
+        });*/
     }
 
     render() {
