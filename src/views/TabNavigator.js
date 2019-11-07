@@ -49,6 +49,7 @@ export default createMaterialTopTabNavigator({
         inactiveTintColor: '#333947',
         showLabel: false,
         tabStyle: {
+            position:'relative',
             flex:1,
             height:hp('8%'),
             width:wp('25%')
