@@ -207,6 +207,7 @@ const styles = {
         bottom: hp('8%')
     },
     backgroundThree: {
+        flex:1,
         width: wp('94%'),
         height: hp('45%'),
         marginTop:hp('5.8%'),
@@ -270,6 +271,7 @@ const styles = {
         fontFamily: 'SpaceGrotesk-Bold'
     },
     backgroundFour: {
+        flex:1,
         height: hp('10%'),
         left: wp('4.6%')
     },
