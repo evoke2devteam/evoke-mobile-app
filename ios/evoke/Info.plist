@@ -71,6 +71,11 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>SpaceGrotesk-Bold.ttf</string>
+		<string>SpaceGrotesk-Light.ttf</string>
+		<string>SpaceGrotesk-Medium.ttf</string>
+		<string>SpaceGrotesk-Regular.ttf</string>
+		<string>SpaceGrotesk-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>

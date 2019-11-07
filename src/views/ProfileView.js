@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { AppRegistry, Image, View, Text, TouchableHighlight, Button, ProgressBarAndroid, ImageBackground } from 'react-native';
-import AsyncStorage from "@react-native-community/async-storage";
+import { AppRegistry, Image, View, Text, TouchableHighlight, TouchableOpacity, Button, ProgressBarAndroid, ImageBackground, SafeAreaView } from 'react-native';
 import { GoogleSignin } from 'react-native-google-signin';
 import StringsLanguage from '../utils/StringsLanguage';
-import { Icon } from 'react-native-elements';
+import {
+    heightPercentageToDP as hp,
+    widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import Config from "../utils/Constants";
 
 
@@ -33,73 +35,86 @@ export default class ProfileView extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('../res/images/fondoCirculo.jpg')} style={{ width: '100%', height: '100%' }}>
-                <View style={styles.container}>
 
-                    <View>
-                        <View opacity={0.76}>
-                            <ImageBackground style={{ height: '27%', width: '100%', left: '5%', top: '0.1%' }}
-                                source={require('../res/images/cajaCounter.png')}>
-                                <Image source={require('../res/images/EvocointIcon.png')} style={{ height: '10%', width: '8%', top: '3.5%', left: '70%' }} />
-                                <Text style={{ height: '10%', width: '10%', bottom: '6%', left: '82%', color: 'white', fontSize: 26 }}>60</Text>
-                                <Text style={{ height: '10%', bottom: '5%', left: '82%', color: 'white', fontSize: 12 }}>Evocoints</Text>
-                                <Image source={require('../res/images/rubiesIcon.png')} style={{ height: '10%', width: '8%', bottom: '26%', left: '41%' }} />
-                                <Text style={{ height: '10%', bottom: '36%', left: '53%', color: 'white', fontSize: 26 }}>1234</Text>
-                                <Text style={{ height: '10%', bottom: '35%', left: '54%', color: 'white', fontSize: 12 }}>Rubies</Text>
-                            </ImageBackground>
-                            <Text style={styles.container_Start}>Perfil</Text>
-                            <ImageBackground
-                                style={{ height: '54.5%', width: '100%', bottom: '23%' }}
-                                source={require('../res/images/containerCentral.png')}>
-                                {/* contenido */}
-                                <Image source={require('../res/images/avatar.png')} style={{ height: '40%', width: '35%', top: '3%', left: '33%' }} />
-                                <Text style={{ color: 'white', fontSize: 40, bottom: '0%', left: '77%' }}>1</Text>
-                                <ProgressBarAndroid styleAttr="Horizontal" color="#3fa9f5" indeterminate={false}
-                                    progress={0.2} style={{ width: '20%', height: '100%', marginLeft: '30%', bottom: '49%' }} />
-                                <Text style={{ color: 'white', fontSize: 20, bottom: '101%', left: '17%' }}>Nivel</Text>
-                                <Text style={{ color: 'white', fontSize: 11, bottom: '100%', left: '17%' }}>100</Text>
-                                <Text style={{ color: 'white', fontSize: 11, bottom: '102.2%', left: '22%', fontWeight: 'bold' }}>/</Text>
-                                <Text style={{ color: 'white', fontSize: 11, bottom: '104.4%', left: '22.8%', fontWeight: 'bold' }}>150</Text>
-                            </ImageBackground>
-                            <View>
-                                <ImageBackground
-                                    style={{ height: '39%', width: '100%', bottom: '100.8%' }}
-                                    source={require('../res/images/boton.png')}>
-                                    <View style={styles.container_buttons}>
-                                        <Button title="Jugar" color="#474d791A" />
-                                    </View>
-                                </ImageBackground>
-                                <Text style={{ color: 'white', fontSize: 20, bottom: '113%', left: '4%' }}>Habilidad</Text>
-                                <Text style={{ color: 'white', fontSize: 20, bottom: '117.6%', left: '42%' }}>Tienda</Text>
-                                <Text style={{ color: 'white', fontSize: 20, bottom: '122%', left: '81%' }}>Equipo</Text>
-                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:'1%',width:'1%',left:'6%'}}>
-                                    <Image
-                                        source={require('../res/images/habilidades.png')}
-                                    />
-                                </TouchableHighlight>
-                    
-                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:'1%',width:'1%',left:'40%'}}>
-                                    <Image
-                                        source={require('../res/images/carrito.png')}
-                                    />
-                                </TouchableHighlight>
-                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:'1%',width:'1%',left:'80%'}}>
-                                    <Image
-                                        source={require('../res/images/equipo.png')}
-                                    />
-                                </TouchableHighlight>
-                                
-                            </View>
-                     
+            <ImageBackground source={require('../res/images/fondoCirculo.jpg')} style={styles.backgroundOne}>
+                <SafeAreaView style={styles.container} opacity={0.76}>
+                    <View style={{width:wp('100%'),height:('20%')}}>
+                    <ImageBackground style={styles.backgroundTwo}
+                        source={require('../res/images/cajaCounter.png')}>
+                        <Image source={require('../res/images/rubiesIcon.png')} style={styles.rubies} />
+                        <Text style={styles.rubiesCounter}>5000</Text>
+                        <Text style={styles.rubiesLabel}>Rubies</Text>
+                        <Image source={require('../res/images/EvocointIcon.png')} style={styles.evocoins} />
+                        <Text style={styles.evocoinsCounter}>04</Text>
+                        <Text style={styles.evocoinsLabel}>Evocoins</Text>
 
+                    </ImageBackground>
+                    </View>
+                        <View style={{width:wp('100%'), height:hp('40%'),bottom:hp('10%'),flexDirection:'column'}}>
+                        <ImageBackground
+                            style={styles.backgroundThree}
+                            source={require('../res/images/containerCentral.png')}>
+                            {/* contenido */}
+                            <Text style={styles.container_title}>Perfil</Text>
+                            <Image source={require('../res/images/avatar.png')} style={styles.avatar} />
+                            <Text style={styles.experienceCounter}>1</Text>
+                            <ProgressBarAndroid styleAttr='Horizontal' color="#3fa9f5" indeterminate={false} progress={0.2} style={styles.progressBar} />
+                            <Text style={styles.levelLabel}>Nivel</Text>
+                            <Text style={styles.counterPoints}>100</Text>
+                            <Text style={styles.separator}>/</Text>
+                            <Text style={styles.maxPoints}>150</Text>
+                            
+                        </ImageBackground>
                         </View>
+                        <View style={{height:hp('20%'),width:wp('90%'),top:hp('1%')}}>
+                    <ImageBackground
+                        style={styles.backgroundFour}
+                        source={require('../res/images/boton.png')}>
+                        <TouchableOpacity onPress={() => this.state.navigate('MisionListView')}>
+                            <Text style={styles.buttonStart}>Jugar</Text>
+                        </TouchableOpacity>
+
+                    </ImageBackground>
+                    </View>
+
+                    <View style={{ flexDirection: 'row', height:hp('20%'), bottom:hp('2%') }}>
+
+                        <TouchableOpacity onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} >
+                            <View>
+                                <Image
+                                    source={require('../res/images/habilidades.png')}
+                                    style={styles.buttonHabilities}
+                                />
+                                <Text style={styles.habilitiesLabel}>Habilidad</Text>
+                            </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} >
+                            <View>
+                                <Image
+                                    source={require('../res/images/carrito.png')}
+                                    style={styles.buttonShop}
+                                />
+                                <Text style={styles.shopLabel}>Tienda</Text>
+                            </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => this.state.navigate('SkillsView')} underlayColor={'#FFFFFF'} activeOpacity={0.8} >
+                            <View>
+                                <Image
+                                    source={require('../res/images/equipo.png')}
+                                    style={styles.buttonSocial}
+                                />
+                                <Text style={styles.socialLabel}>Equipo</Text>
+                            </View>
+                        </TouchableOpacity>
 
 
                     </View>
 
-
-                </View>
+                </SafeAreaView>
             </ImageBackground>
+
         );
     }
 
@@ -131,71 +146,186 @@ export default class ProfileView extends React.Component {
 const styles = {
     container: {
         flex: 1,
-        alignItems: 'center',
-        flexDirection: 'column',
+        flexDirection: 'column'
     },
-    container_username: {
-        width: '50%',
-        justifyContent: 'flex-start',
-        paddingLeft: '20%',
-        marginRight: '80%'
+    backgroundOne: {
+        flex: 1,
+        flexDirection: 'column'
 
     },
-    container_Start: {
-        width: '100%',
-        color: '#14def4',
-        fontSize: 30,
-        fontWeight: 'bold',
-        marginRight: '80%',
-        bottom: '25%'
+    backgroundTwo: {
+        flex: 1,
+        width: wp('80%'),
+        height: hp('10%'),
+        left: wp('21%'),
+        flexDirection: 'row'
+
+
     },
-    username: {
-        color: '#fff',
-        textAlign: 'left',
-        width: '100%',
-        justifyContent: 'space-between'
+    rubies: {
+        height: hp('4%'),
+        width: wp('7%'),
+        top: hp('1%'),
+        left: wp('30%')
+
+    },
+    rubiesCounter: {
+        top: hp('1%'),
+        left: wp('34%'),
+        color: 'white',
+        fontSize: hp('2.6%'),
+        fontFamily: 'SpaceGrotesk-Medium'
+    },
+    rubiesLabel: {
+        top: hp('4%'),
+        left: wp('25.4%'),
+        color: 'white',
+        fontSize: hp('1.4%'),
+        fontFamily: 'SpaceGrotesk-Medium'
+    },
+    evocoins: {
+        height: hp('4%'),
+        width: wp('7%'),
+        top: hp('1%'),
+        left: wp('30.5%')
+
+    },
+    evocoinsCounter: {
+        top: hp('1.2%'),
+        left: wp('38%'),
+        color: 'white',
+        fontSize: hp('2.6%'),
+        fontFamily: 'SpaceGrotesk-Medium'
+    },
+    evocoinsLabel: {
+        top: hp('4%'),
+        left: wp('28%'),
+        color: 'white',
+        fontSize: hp('1.4%'),
+        fontFamily: 'SpaceGrotesk-Medium'
+    },
+    container_title: {
+
+        color: '#14def4',
+        fontSize: hp('4%'),
+        fontFamily: 'SpaceGrotesk-Medium',
+        left: wp('3.5%'),
+        bottom: hp('8%')
+    },
+    backgroundThree: {
+        width: wp('94%'),
+        height: hp('45%'),
+        marginTop:hp('5.8%'),
+        left: wp('3%'),
+        flexDirection: 'row'
+
+
     },
     avatar: {
-        height: '60%',
-        width: '50%',
-        marginTop: '4%',
-        marginLeft: '25%',
+        height: hp('29%'),
+        width: wp('28%'),
+        top: hp('5%'),
+        left: wp('15%')
+    },
+    experienceCounter: {
+        color: 'white',
+        fontSize: hp('5%'),
+        top: hp('34%'),
+        left: wp('73%'),
+        position:'absolute',
+        fontFamily: 'SpaceGrotesk-Medium',
+    },
+    progressBar: {
+        width: wp('35%'),
+        transform: [{ scaleX: 1.0 }, { scaleY: 2.5 }],
+        left: wp('27%'),
+        position:'absolute',
+        top: hp('38.5%'),
 
     },
-    skill: {
-        bottom: '20%',
+    levelLabel: {
+        top: hp('38.5%'),
+        left:wp('18%'),
+        color: 'white',
+        fontSize: hp('2%'),
+        position:'absolute',
+        fontFamily: 'SpaceGrotesk-Medium'
+    },
+    counterPoints: {
+        top: hp('42.5%'),
+        right: wp('75%'),
+        color: 'white',
+        fontSize: hp('1.3%'),
+        position:'absolute',
+        fontFamily: 'SpaceGrotesk-Medium'
+    },
+    separator: {
+        top: hp('42%'),
+        right: wp('73%'),
+        color: 'white',
+        position:'absolute',
+        fontSize: hp('1.6%'),
+        fontFamily: 'SpaceGrotesk-Bold'
+    },
+    maxPoints: {
+        top: hp('42.5%'),
+        right: wp('68%'),
+        color: 'white',
+        position:'absolute',
+        fontSize: hp('1.6%'),
+        fontFamily: 'SpaceGrotesk-Bold'
+    },
+    backgroundFour: {
+        height: hp('10%'),
+        left: wp('4.6%')
+    },
+    buttonStart: {
+        top: hp('1.5%'),
+        left: wp('37%'),
+        color: 'white',
+        fontSize: hp('5%'),
+        fontFamily: 'SpaceGrotesk-Medium'
+    },
+    buttonHabilities: {
+        height: hp('12%'),
+        width: wp('28%'),
+        bottom: hp('7%'),
+        left: wp('6%')
+    },
+    buttonShop: {
+        height: hp('13.6%'),
+        width: wp('30%'),
+        bottom: hp('7.8%'),
+        left: wp('7%')
+    },
+    buttonSocial: {
+        height: hp('12%'),
+        width: wp('28%'),
+        bottom: hp('7%'),
+        left: wp('7%')
+    },
+    habilitiesLabel: {
+        color: 'white',
+        fontSize: hp('2%'),
+        left: wp('13%'),
+        bottom: hp('12%'),
+        fontFamily: 'SpaceGrotesk-Medium'
+    },
+    shopLabel: {
+        color: 'white',
+        fontSize: hp('2%'),
+        left: wp('16%'),
+        bottom:hp('13.5%'),
+        fontFamily: 'SpaceGrotesk-Medium'
+    },
+    socialLabel: {
+        color: 'white',
+        fontSize: hp('2%'),
+        left: wp('15%'),
+        bottom: hp('12%'),
+        fontFamily: 'SpaceGrotesk-Medium'
+    },
 
-
-    },
-    container_buttons: {
-        height: 500,
-        top: '13%',
-        left: '9%',
-        width: '84%'
-    },
-    item: {
-        width: '48%',
-        alignItems: 'center',
-        marginLeft: '1%',
-        borderWidth: 1,
-        borderColor: '#000000',
-        borderRadius: 20,
-        minHeight: 80,
-        marginTop: 150,
-        backgroundColor: 'white',
-
-    },
-    text_buttons: {
-        fontSize: 28,
-        color: '#000',
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    container_settings: {
-        position: 'absolute',
-        right: '1%',
-        top: '40%'
-    }
 };
 
 AppRegistry.registerComponent('ProfileView', () => ProfileView);
