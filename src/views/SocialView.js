@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
-import { AppRegistry, Image, View, Text, TouchableHighlight, Button, ProgressBarAndroid, ImageBackground } from 'react-native';
+import { AppRegistry, Image, View, Text, TouchableHighlight, TouchableOpacity, Button, ProgressBarAndroid, ImageBackground, SafeAreaView,ScrollView } from 'react-native';
 import { GoogleSignin } from 'react-native-google-signin';
 import StringsLanguage from '../utils/StringsLanguage';
-import { Icon } from 'react-native-elements';
+import {
+    heightPercentageToDP as hp,
+    widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import {
+    Menu,
+    MenuProvider,
+    MenuOptions,
+    MenuOption,
+    MenuTrigger,
+  } from 'react-native-popup-menu';
+
 
 
 export default class SocialView extends React.Component {
@@ -12,7 +23,7 @@ export default class SocialView extends React.Component {
         this.state = {
             navigate: this.props.navigation.navigate,
             userInfo: {},
-            evocoins: 0,
+            // evocoins: 0,
             language: (!!this.props.navigation.getParam('language')) ? this.props.navigation.navigate.getParam('language') : null
         }
     }
@@ -21,7 +32,7 @@ export default class SocialView extends React.Component {
     async componentDidMount(): void {
         const userInfo = await GoogleSignin.getCurrentUser();
         this.setState({ userInfo: userInfo.user });
-        this.getEvocoins();
+        // this.getEvocoins();
     }
 
 
@@ -29,166 +40,179 @@ export default class SocialView extends React.Component {
     render() {
 
         return (
-            <ImageBackground source={require('../res/images/fondoSocial.jpg')} style={{ width: '100%', height: '80%' }}>
-                <View style={styles.container}>
-
-                    <View>
-                        {/* <View opacity={0.76}>
-                            <ImageBackground style={{ height: '27%', width: '100%', left: '5%', top: '0.1%' }}
-                                source={require('../res/images/cajaCounter.png')}>
-                                <Image source={require('../res/images/EvocointIcon.png')} style={{ height: '10%', width: '8%', top: '3.5%', left: '70%' }} />
-                                <Text style={{ height: '10%', width: '10%', bottom: '6%', left: '82%', color: 'white', fontSize: 26 }}>60</Text>
-                                <Text style={{ height: '10%', bottom: '5%', left: '82%', color: 'white', fontSize: 12 }}>Evocoints</Text>
-                                <Image source={require('../res/images/rubiesIcon.png')} style={{ height: '10%', width: '8%', bottom: '26%', left: '41%' }} />
-                                <Text style={{ height: '10%', bottom: '36%', left: '53%', color: 'white', fontSize: 26 }}>1234</Text>
-                                <Text style={{ height: '10%', bottom: '35%', left: '54%', color: 'white', fontSize: 12 }}>Rubies</Text>
-                            </ImageBackground>
-                            <Text style={styles.container_Start}>Perfil</Text>
-                            <ImageBackground
-                                style={{ height: '54.5%', width: '100%', bottom: '23%' }}
-                                source={require('../res/images/containerCentral.png')}> */}
-                                {/* contenido */}
-                                {/* <Image source={require('../res/images/avatar.png')} style={{ height: '45%', width: '36%', top: '3%', left: '33%' }} />
-                                <Text style={{ color: 'white', fontSize: 50, bottom: '5%', left: '77%' }}>1</Text>
-                                <ProgressBarAndroid styleAttr="Horizontal" color="#3fa9f5" indeterminate={false}
-                                    progress={0.2} style={{ width: '20%', height: '100%', marginLeft: '30%', bottom: '55%' }} />
-                                <Text style={{ color: 'white', fontSize: 20, bottom: '107%', left: '17%' }}>Nivel</Text>
-                                <Text style={{ color: 'white', fontSize: 11, bottom: '106%', left: '17%' }}>100</Text>
-                                <Text style={{ color: 'white', fontSize: 11, bottom: '108.2%', left: '22%', fontWeight: 'bold' }}>/</Text>
-                                <Text style={{ color: 'white', fontSize: 11, bottom: '110.4%', left: '22.8%', fontWeight: 'bold' }}>150</Text>
-                            </ImageBackground>
-                            <View>
-                                <ImageBackground
-                                    style={{ height: '39%', width: '100%', bottom: '103.8%' }}
-                                    source={require('../res/images/boton.png')}>
-                                    <View style={styles.container_buttons}>
-                                        <Button title="Jugar" color="#474d791A" />
-                                    </View>
-                                </ImageBackground>
-                                <Text style={{ color: 'white', fontSize: 20, bottom: '113%', left: '4%' }}>Habilidad</Text>
-                                <Text style={{ color: 'white', fontSize: 20, bottom: '117.6%', left: '42%' }}>Tienda</Text>
-                                <Text style={{ color: 'white', fontSize: 20, bottom: '122%', left: '81%' }}>Equipo</Text>
-                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:1,width:1,left:'6%'}}>
-                                    <Image
-                                        source={require('../res/images/habilidades.png')}
-                                    />
-                                </TouchableHighlight>
-                    
-                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:1,width:1,left:'40%'}}>
-                                    <Image
-                                        source={require('../res/images/carrito.png')}
-                                    />
-                                </TouchableHighlight>
-                                <TouchableHighlight onPress={() => this.state.navigate('SkillsView')} underlayColor={'#05BAFA'} activeOpacity={0.1} style={{bottom:'138%', height:1,width:1,left:'80%'}}>
-                                    <Image
-                                        source={require('../res/images/equipo.png')}
-                                    />
-                                </TouchableHighlight>
-                                
+            
+            <ImageBackground source={require('../res/images/fondo.jpg')} style={styles.backgroundOne}>
+                <ScrollView style={styles.container} >
+                    <View style={styles.container_title}>
+                        <Text style={styles.titleLabel}>Área social </Text>
+                    </View>
+                    <View style={{ width: wp('100%'), height: hp('10%'), bottom: hp('5%'), flexDirection: 'column' }}>
+                        <ImageBackground
+                            style={styles.photoIcon}
+                            source={require('../res/images/perfilPrueba.png')}>
+                            <Image
+                                source={require('../res/images/cajaPerfil.png')}
+                                style={styles.lineProfile}  />
+                            {/* <View style={{backgroundColor:'#3b415b', width:wp('74%'),height:hp('7.5%'),top:hp('1%'),left:wp('6%')}}>
+                            <MenuProvider style={{ flexDirection: 'column', top:hp('2.5%'), left:wp('48%')}}>
+                                <Menu onSelect={value => alert(`Selected number: ${value}`)}>
+                                    <MenuTrigger >
+                                        <Image source={require('../res/images/puntos.png')}
+                                        style={{height:hp('5.2%'),width:wp('2%'),bottom:hp('1.5%'),left:wp('20%')}}/>
+                                        </MenuTrigger>
+                                    <MenuOptions>
+                                        <MenuOption value={1} style={{height:hp('10%')}}>
+                                            <Text style={{ color: 'red' }}>one</Text>
+                                            </MenuOption>
+                                        <MenuOption value={2}>
+                                            <Text style={{ color: 'red' }}>Two</Text>
+                                        </MenuOption>
+                                        <MenuOption value={3} >
+                                        <Text style={{ color: 'red' }}>three</Text>
+                                        </MenuOption>
+                                    </MenuOptions>
+                                </Menu>
+                            </MenuProvider>
+                            <Text style={styles.name}>David el gato muerto</Text>
                             </View> */}
-                     
+                        </ImageBackground>
+                    </View>
+                    {/* <View style={{ width: wp('100%'), height: hp('40%'), bottom: hp('5%'), flexDirection: 'column' }}>
+                        <ImageBackground
+                            style={styles.photos}
+                            source={require('../res/images/fotoPrueba.png')}>
 
-                        {/* </View> */}
+                        </ImageBackground>
+                    </View>
+                   
 
+                    <View style={{ height: hp('35%'), width:wp('100%') }}>
+                    <View style={{backgroundColor:'#3b4171', width:wp('90.2%'),height:hp('5%'),bottom:hp('0.8%'),left:wp('5.2%'),flexDirection:'row'}}>
+                    <Image source={require('../res/images/corazon.png')}
+                    style={{height:hp('4%'),width:wp('7%'),left:wp('1%'),top:hp('0.4%')}}/>
+                    <Image source={require('../res/images/comentar.png')}
+                    style={{height:hp('4%'),width:wp('7%'),left:wp('3%'),top:hp('0.4%')}}/>
+                    <Image source={require('../res/images/compartir.png')}
+                    style={{height:hp('4%'),width:wp('6.7%'),left:wp('5%'),top:hp('0.4%')}}/>
+                    </View>
+                    <View style={{backgroundColor:'#404474', width:wp('90.2%'),height:hp('5%'),bottom:hp('0.8%'),left:wp('5.2%'),flexDirection:'row'}}>
+                    <Text style={styles.textRegular}> A</Text>
+                    <Text style={styles.textBold}> 19 </Text>
+                    <Text style={styles.textRegular}>personas les gusta esta evidencia</Text>
+                    </View>
+                    <View style={{backgroundColor:'#2e3b68', width:wp('90.2%'),height:hp('5%'),bottom:hp('0.8%'),left:wp('5.2%'),flexDirection:'row'}}>
+                    <Text style={styles.textBold}> David el gato muerto: </Text>
+                    <Text style={styles.textRegularSmall}>Evidencias de la mision por la paz </Text>
+                    <Text style={{color:'yellow',top:hp('1%'),fontSize:hp('1.4%')}}> +info</Text>
 
                     </View>
 
 
-                </View>
+                    </View> */}
+
+                </ScrollView>
             </ImageBackground>
+
         );
     }
 
-    getEvocoins() {
-        fetch('/evocoin/balanceOf', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: this.state.userInfo.email
-            }),
-        }).then((response) => response.json())
-            .then((responseJson) => {
-                this.setState({ evocoins: responseJson.evocoins });
-            })
-            .catch((error) => {
-                this.setState({ evocoins: 0 });
-                console.log(error);
-            });
-    }
+    // getEvocoins() {
+    //     fetch('/evocoin/balanceOf', {
+    //         method: 'POST',
+    //         headers: {
+    //             Accept: 'application/json',
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             email: this.state.userInfo.email
+    //         }),
+    //     }).then((response) => response.json())
+    //         .then((responseJson) => {
+    //             this.setState({ evocoins: responseJson.evocoins });
+    //         })
+    //         .catch((error) => {
+    //             this.setState({ evocoins: 0 });
+    //             console.log(error);
+    //         });
+    // }
 
 
 }
 const styles = {
     container: {
         flex: 1,
-        alignItems: 'center',
-        flexDirection: 'column',
     },
-    container_username: {
-        width: '50%',
-        justifyContent: 'flex-start',
-        paddingLeft: '20%',
-        marginRight: '80%'
+    backgroundOne: {
+        flex: 1,
+        flexDirection: 'column'
 
     },
-    container_Start: {
-        width: '100%',
+    lineProfile: {
+        flex: 1,
+        width: wp('95%'),
+        height: hp('10%'),
+        top: hp('0%'),
+        right:wp('4%'),
+        flexDirection: 'row'
+    },
+    photoIcon: {
+        height: hp('7%'),
+        width: wp('15%'),
+        left: wp('5.5%'),
+        top: hp('1%')
+    },
+    titleLabel: {
+        top: hp('5%'),
+        left: wp('6%'),
         color: '#14def4',
-        fontSize: 30,
-        fontWeight: 'bold',
-        marginRight: '80%',
-        bottom: '25%'
+        fontSize: hp('4%'),
+        fontFamily: 'SpaceGrotesk-Medium'
     },
-    username: {
-        color: '#fff',
-        textAlign: 'left',
-        width: '100%',
-        justifyContent: 'space-between'
+    container_title: {
+
+        width: wp('100%'),
+        height: hp('15%')
     },
-    avatar: {
-        height: '60%',
-        width: '50%',
-        marginTop: '4%',
-        marginLeft: '25%',
+    photos: {
+        flex: 1,
+        flexDirection: 'column',
+        width: wp('90.2%'),
+        height: hp('45%'),
+        left: wp('5.2%'),
+        bottom:hp('1%')
+    },
+    backgroundFour: {
+        flex: 1,
+        flexDirection: 'column',
+        height: hp('10%'),
+        left: wp('4.6%')
+    },
+    name:{
+        left:wp('2%'),
+        bottom:hp('2%'),
+        color: 'white',
+        fontSize: hp('3%'),
+        fontFamily: 'SpaceGrotesk-Regular'
 
     },
-    skill: {
-        bottom: '20%',
-
-
+    textRegular:{
+        fontFamily: 'SpaceGrotesk-Regular',
+        top:hp('0.5%'),
+        fontSize: hp('2%'),
+         
     },
-    container_buttons: {
-        height: 500,
-        top: '13%',
-        left: '9%',
-        width: '84%'
+    textBold:{
+        fontFamily: 'SpaceGrotesk-Bold',
+        top:hp('0.5%'),
+        fontSize: hp('2%'),
+        
     },
-    item: {
-        width: '48%',
-        alignItems: 'center',
-        marginLeft: '1%',
-        borderWidth: 1,
-        borderColor: '#000000',
-        borderRadius: 20,
-        minHeight: 80,
-        marginTop: 150,
-        backgroundColor: 'white',
-
-    },
-    text_buttons: {
-        fontSize: 28,
-        color: '#000',
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    container_settings: {
-        position: 'absolute',
-        right: '1%',
-        top: '40%'
+    textRegularSmall:{
+        fontFamily: 'SpaceGrotesk-Regular',
+        top:hp('1.1%'),
+        fontSize: hp('1.4%'),
     }
+
 };
 
 AppRegistry.registerComponent('SocialView', () => SocialView);

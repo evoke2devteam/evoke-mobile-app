@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Image, View, Text, TouchableHighlight, TouchableOpacity, Button, ProgressBarAndroid, ImageBackground, SafeAreaView } from 'react-native';
+import { AppRegistry, Image, View, Text, TouchableHighlight, TouchableOpacity, Button, ProgressBarAndroid, ImageBackground, SafeAreaView,ScrollView } from 'react-native';
 import { GoogleSignin } from 'react-native-google-signin';
 import StringsLanguage from '../utils/StringsLanguage';
 import {
@@ -34,7 +34,7 @@ export default class ProfileView extends React.Component {
         return (
 
             <ImageBackground source={require('../res/images/fondoCirculo.jpg')} style={styles.backgroundOne}>
-                <SafeAreaView style={styles.container} opacity={0.76}>
+                
                     <View style={{width:wp('100%'),height:('20%')}}>
                     <ImageBackground style={styles.backgroundTwo}
                         source={require('../res/images/cajaCounter.png')}>
@@ -47,20 +47,21 @@ export default class ProfileView extends React.Component {
 
                     </ImageBackground>
                     </View>
-                        <View style={{width:wp('100%'), height:hp('40%'),bottom:hp('10%'),flexDirection:'column'}}>
+                        <View style={{width:wp('100%'), height:hp('40%'),bottom:hp('5%'),flexDirection:'column'}}>
                         <ImageBackground
                             style={styles.backgroundThree}
                             source={require('../res/images/containerCentral.png')}>
                             {/* contenido */}
                             <Text style={styles.container_title}>Perfil</Text>
                             <Image source={require('../res/images/avatar.png')} style={styles.avatar} />
+                            <View style={{flexDirection:'row'}}>
                             <Text style={styles.experienceCounter}>1</Text>
                             <ProgressBarAndroid styleAttr='Horizontal' color="#3fa9f5" indeterminate={false} progress={0.2} style={styles.progressBar} />
                             <Text style={styles.levelLabel}>Nivel</Text>
                             <Text style={styles.counterPoints}>100</Text>
                             <Text style={styles.separator}>/</Text>
                             <Text style={styles.maxPoints}>150</Text>
-                            
+                            </View>
                         </ImageBackground>
                         </View>
                         <View style={{height:hp('20%'),width:wp('90%'),top:hp('1%')}}>
@@ -109,7 +110,7 @@ export default class ProfileView extends React.Component {
 
                     </View>
 
-                </SafeAreaView>
+               
             </ImageBackground>
 
         );
@@ -140,7 +141,8 @@ export default class ProfileView extends React.Component {
 const styles = {
     container: {
         flex: 1,
-        flexDirection: 'column'
+        width:wp('100%'),
+        height:hp('100%')
     },
     backgroundOne: {
         flex: 1,
@@ -150,7 +152,8 @@ const styles = {
     backgroundTwo: {
         flex: 1,
         width: wp('80%'),
-        height: hp('10%'),
+        height: hp('8.5%'),
+        top:hp('0.4%'),
         left: wp('21%'),
         flexDirection: 'row'
 
@@ -181,19 +184,19 @@ const styles = {
         height: hp('4%'),
         width: wp('7%'),
         top: hp('1%'),
-        left: wp('30.5%')
+        left: wp('29%')
 
     },
     evocoinsCounter: {
         top: hp('1.2%'),
-        left: wp('38%'),
+        left: wp('36%'),
         color: 'white',
         fontSize: hp('2.6%'),
         fontFamily: 'SpaceGrotesk-Medium'
     },
     evocoinsLabel: {
         top: hp('4%'),
-        left: wp('28%'),
+        left: wp('25%'),
         color: 'white',
         fontSize: hp('1.4%'),
         fontFamily: 'SpaceGrotesk-Medium'
@@ -208,70 +211,65 @@ const styles = {
     },
     backgroundThree: {
         flex:1,
+        flexDirection: 'column',
         width: wp('94%'),
         height: hp('45%'),
-        marginTop:hp('5.8%'),
         left: wp('3%'),
-        flexDirection: 'row'
+    
 
 
     },
     avatar: {
-        height: hp('29%'),
-        width: wp('28%'),
-        top: hp('5%'),
-        left: wp('15%')
+        height: hp('26%'),
+        width: wp('25%'),
+        marginTop: hp('1%'),
+        left: wp('30%')
     },
     experienceCounter: {
         color: 'white',
         fontSize: hp('5%'),
-        top: hp('34%'),
+        top: hp('2%'),
         left: wp('73%'),
-        position:'absolute',
         fontFamily: 'SpaceGrotesk-Medium',
     },
     progressBar: {
         width: wp('35%'),
         transform: [{ scaleX: 1.0 }, { scaleY: 2.5 }],
-        left: wp('27%'),
-        position:'absolute',
-        top: hp('38.5%'),
+        left: wp('22%'),
+        top: hp('4%'),
 
     },
     levelLabel: {
-        top: hp('38.5%'),
-        left:wp('18%'),
+        top: hp('6%'),
+        right:wp('23%'),
         color: 'white',
         fontSize: hp('2%'),
-        position:'absolute',
         fontFamily: 'SpaceGrotesk-Medium'
     },
     counterPoints: {
-        top: hp('42.5%'),
-        right: wp('75%'),
+        top:hp('10%'),
+        right: wp('30%'),
         color: 'white',
         fontSize: hp('1.3%'),
-        position:'absolute',
         fontFamily: 'SpaceGrotesk-Medium'
     },
     separator: {
-        top: hp('42%'),
-        right: wp('73%'),
+        top: hp('9.8%'),
+        right: wp('30%'),
         color: 'white',
-        position:'absolute',
         fontSize: hp('1.6%'),
         fontFamily: 'SpaceGrotesk-Bold'
     },
     maxPoints: {
-        top: hp('42.5%'),
-        right: wp('68%'),
+        top: hp('9.8%'),
+        right: wp('30%'),
         color: 'white',
-        position:'absolute',
         fontSize: hp('1.6%'),
         fontFamily: 'SpaceGrotesk-Bold'
     },
     backgroundFour: {
         flex:1,
+        flexDirection: 'column',
         height: hp('10%'),
         left: wp('4.6%')
     },
@@ -290,7 +288,7 @@ const styles = {
     },
     buttonShop: {
         height: hp('13.6%'),
-        width: wp('30%'),
+        width: wp('28%'),
         bottom: hp('7.8%'),
         left: wp('7%')
     },
@@ -298,7 +296,7 @@ const styles = {
         height: hp('12%'),
         width: wp('28%'),
         bottom: hp('7%'),
-        left: wp('7%')
+        left: wp('8%')
     },
     habilitiesLabel: {
         color: 'white',
