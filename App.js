@@ -13,6 +13,7 @@ import SettingsView from './src/views/SettingsView';
 import CodeValidationView from './src/views/CodeValidationView';
 import SkillsView from './src/views/SkillsView';
 import TabNavigator from './src/views/TabNavigator';
+import SocialView from './src/views/Social/SocialView';
 
 
 const MainNavigator = createStackNavigator({
@@ -28,6 +29,7 @@ const MainNavigator = createStackNavigator({
     CodeValidationView: {screen: CodeValidationView},
     SkillsView: {screen: SkillsView},
     TabNavigator: {screen: TabNavigator},
+    SocialView:{screen: SocialView}
 });
 
 const App = createAppContainer(MainNavigator);

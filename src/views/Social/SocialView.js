@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, Image, View, Text, TouchableHighlight, TouchableOpacity, Button, ProgressBarAndroid, ImageBackground, SafeAreaView,ScrollView } from 'react-native';
 import { GoogleSignin } from 'react-native-google-signin';
-import StringsLanguage from '../utils/StringsLanguage';
 import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp,
@@ -23,7 +22,6 @@ export default class SocialView extends React.Component {
         this.state = {
             navigate: this.props.navigation.navigate,
             userInfo: {},
-            // evocoins: 0,
             language: (!!this.props.navigation.getParam('language')) ? this.props.navigation.navigate.getParam('language') : null
         }
     }
@@ -32,7 +30,6 @@ export default class SocialView extends React.Component {
     async componentDidMount(): void {
         const userInfo = await GoogleSignin.getCurrentUser();
         this.setState({ userInfo: userInfo.user });
-        // this.getEvocoins();
     }
 
 
@@ -41,30 +38,32 @@ export default class SocialView extends React.Component {
 
         return (
             
-            <ImageBackground source={require('../res/images/fondo.jpg')} style={styles.backgroundOne}>
+            <ImageBackground source={require('../../res/images/fondoCirculo.jpg')} style={styles.backgroundOne}>
                 <ScrollView style={styles.container} >
                     <View style={styles.container_title}>
                         <Text style={styles.titleLabel}>Área social </Text>
                     </View>
-                    <View style={{ width: wp('100%'), height: hp('10%'), bottom: hp('5%'), flexDirection: 'column' }}>
-                        <ImageBackground
+                    <View style={{ width: wp('100%'), height: hp('10%'), bottom: hp('5%')}}>
+                        
+                            
+                            <View style={{backgroundColor:'#3b415b', width:wp('90.5%'),height:hp('8.5%'),left:wp('5%'),flexDirection:'row'}}>
+                            <ImageBackground
                             style={styles.photoIcon}
-                            source={require('../res/images/perfilPrueba.png')}>
+                            source={require('../../res/images/perfilPrueba.png')}>
                             <Image
-                                source={require('../res/images/cajaPerfil.png')}
+                                source={require('../../res/images/cajaPerfil.png')}
                                 style={styles.lineProfile}  />
-                            {/* <View style={{backgroundColor:'#3b415b', width:wp('74%'),height:hp('7.5%'),top:hp('1%'),left:wp('6%')}}>
-                            <MenuProvider style={{ flexDirection: 'column', top:hp('2.5%'), left:wp('48%')}}>
+                            <MenuProvider style={{ flexDirection: 'column', bottom:hp('6.7%'), left:wp('65%')}}>
                                 <Menu onSelect={value => alert(`Selected number: ${value}`)}>
                                     <MenuTrigger >
-                                        <Image source={require('../res/images/puntos.png')}
+                                        <Image source={require('../../res/images/puntos.png')}
                                         style={{height:hp('5.2%'),width:wp('2%'),bottom:hp('1.5%'),left:wp('20%')}}/>
                                         </MenuTrigger>
                                     <MenuOptions>
-                                        <MenuOption value={1} style={{height:hp('10%')}}>
+                                        <MenuOption value={1} >
                                             <Text style={{ color: 'red' }}>one</Text>
                                             </MenuOption>
-                                        <MenuOption value={2}>
+                                        <MenuOption value={2} >
                                             <Text style={{ color: 'red' }}>Two</Text>
                                         </MenuOption>
                                         <MenuOption value={3} >
@@ -74,33 +73,34 @@ export default class SocialView extends React.Component {
                                 </Menu>
                             </MenuProvider>
                             <Text style={styles.name}>David el gato muerto</Text>
-                            </View> */}
+                            
                         </ImageBackground>
+                        </View> 
                     </View>
-                    {/* <View style={{ width: wp('100%'), height: hp('40%'), bottom: hp('5%'), flexDirection: 'column' }}>
+                     <View style={{ width: wp('100%'), height: hp('40%'), bottom: hp('5%'), flexDirection: 'column' }}>
                         <ImageBackground
                             style={styles.photos}
-                            source={require('../res/images/fotoPrueba.png')}>
+                            source={require('../../res/images/fotoPrueba.png')}>
 
                         </ImageBackground>
                     </View>
                    
 
                     <View style={{ height: hp('35%'), width:wp('100%') }}>
-                    <View style={{backgroundColor:'#3b4171', width:wp('90.2%'),height:hp('5%'),bottom:hp('0.8%'),left:wp('5.2%'),flexDirection:'row'}}>
-                    <Image source={require('../res/images/corazon.png')}
-                    style={{height:hp('4%'),width:wp('7%'),left:wp('1%'),top:hp('0.4%')}}/>
-                    <Image source={require('../res/images/comentar.png')}
+                    <View style={{backgroundColor:'#3b4171', width:wp('90.2%'),height:hp('5%'),bottom:hp('1.4%'),left:wp('5.2%'),flexDirection:'row'}}>
+                    <Image source={require('../../res/images/corazon.png')}
+                    style={{height:hp('4.3%'),width:wp('7%'),left:wp('1%'),top:hp('0.4%')}}/>
+                    <Image source={require('../../res/images/comentar.png')}
                     style={{height:hp('4%'),width:wp('7%'),left:wp('3%'),top:hp('0.4%')}}/>
-                    <Image source={require('../res/images/compartir.png')}
+                    <Image source={require('../../res/images/compartir.png')}
                     style={{height:hp('4%'),width:wp('6.7%'),left:wp('5%'),top:hp('0.4%')}}/>
                     </View>
-                    <View style={{backgroundColor:'#404474', width:wp('90.2%'),height:hp('5%'),bottom:hp('0.8%'),left:wp('5.2%'),flexDirection:'row'}}>
+                    <View style={{backgroundColor:'#404474', width:wp('90.2%'),height:hp('5%'),bottom:hp('1.4%'),left:wp('5.2%'),flexDirection:'row'}}>
                     <Text style={styles.textRegular}> A</Text>
                     <Text style={styles.textBold}> 19 </Text>
                     <Text style={styles.textRegular}>personas les gusta esta evidencia</Text>
                     </View>
-                    <View style={{backgroundColor:'#2e3b68', width:wp('90.2%'),height:hp('5%'),bottom:hp('0.8%'),left:wp('5.2%'),flexDirection:'row'}}>
+                    <View style={{backgroundColor:'#2e3b68', width:wp('90.2%'),height:hp('5%'),bottom:hp('1.4%'),left:wp('5.2%'),flexDirection:'row'}}>
                     <Text style={styles.textBold}> David el gato muerto: </Text>
                     <Text style={styles.textRegularSmall}>Evidencias de la mision por la paz </Text>
                     <Text style={{color:'yellow',top:hp('1%'),fontSize:hp('1.4%')}}> +info</Text>
@@ -108,7 +108,7 @@ export default class SocialView extends React.Component {
                     </View>
 
 
-                    </View> */}
+                    </View> 
 
                 </ScrollView>
             </ImageBackground>
@@ -116,25 +116,6 @@ export default class SocialView extends React.Component {
         );
     }
 
-    // getEvocoins() {
-    //     fetch('/evocoin/balanceOf', {
-    //         method: 'POST',
-    //         headers: {
-    //             Accept: 'application/json',
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //             email: this.state.userInfo.email
-    //         }),
-    //     }).then((response) => response.json())
-    //         .then((responseJson) => {
-    //             this.setState({ evocoins: responseJson.evocoins });
-    //         })
-    //         .catch((error) => {
-    //             this.setState({ evocoins: 0 });
-    //             console.log(error);
-    //         });
-    // }
 
 
 }
@@ -148,18 +129,17 @@ const styles = {
 
     },
     lineProfile: {
-        flex: 1,
-        width: wp('95%'),
+        width: wp('94.3%'),
         height: hp('10%'),
-        top: hp('0%'),
-        right:wp('4%'),
+        bottom:hp('1.56%'),
+        right:wp('3.95%'),
         flexDirection: 'row'
     },
     photoIcon: {
-        height: hp('7%'),
-        width: wp('15%'),
-        left: wp('5.5%'),
-        top: hp('1%')
+        flex:1,
+        height: hp('8.5%'),
+        width: wp('16.5%'),
+        
     },
     titleLabel: {
         top: hp('5%'),
@@ -178,18 +158,12 @@ const styles = {
         flexDirection: 'column',
         width: wp('90.2%'),
         height: hp('45%'),
-        left: wp('5.2%'),
-        bottom:hp('1%')
-    },
-    backgroundFour: {
-        flex: 1,
-        flexDirection: 'column',
-        height: hp('10%'),
-        left: wp('4.6%')
+        left: wp('5%'),
+        bottom:hp('1.6%')
     },
     name:{
-        left:wp('2%'),
-        bottom:hp('2%'),
+        left:wp('19%'),
+        bottom:hp('8%'),
         color: 'white',
         fontSize: hp('3%'),
         fontFamily: 'SpaceGrotesk-Regular'

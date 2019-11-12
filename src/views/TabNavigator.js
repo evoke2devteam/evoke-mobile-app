@@ -3,13 +3,13 @@ import { AppRegistry, Image, View, Text, TouchableHighlight, Button, ProgressBar
 import { ThemeProvider } from 'react-native-elements';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import ProfileView from './ProfileView';
-import SocialView from './SocialView';
-import MisionDetailView from './MisionDetailView';
+import NotificationsView from './NotificationsView';
 import DrawerView from './DrawerView';
 import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import HomeSocialView from './Social/HomeSocialView';
 
 
 
@@ -18,23 +18,23 @@ export default createMaterialTopTabNavigator({
         screen: ProfileView,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
-                <Image source={require('../res/images/profileIcon.png')} style={{height:hp('6%'), width:wp('11%'),bottom:hp('2.3%')}} />
+                <Image source={require('../res/images/profileIcon.png')} style={{height:hp('7%'), width:wp('12%'),bottom:hp('2.3%')}} />
             )
         }
     },
-    Social: { screen: SocialView, navigationOptions: {
+    Social: { screen: HomeSocialView, navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-            <Image source={require('../res/images/socialIcon.png')} style={{height:hp('6%'), width:wp('11%'), bottom:hp('2.1%')}} />
+            <Image source={require('../res/images/socialIcon.png')} style={{height:hp('6%'), width:wp('11%'), bottom:hp('1.8%')}} />
         )
     } },
-    Notification: { screen: MisionDetailView, navigationOptions: {
+    Notification: { screen: NotificationsView, navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-            <Image source={require('../res/images/notificationsIcon.png')} style={{height:hp('6%'), width:wp('11%'), bottom:hp('2.1%')}} />
+            <Image source={require('../res/images/notificationsIcon.png')} style={{height:hp('6%'), width:wp('11%'), bottom:hp('1.7%')}} />
         )
     } },
     Drawer: { screen: DrawerView, navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-            <Image source={require('../res/images/drawerIcon.png')} style={{height:hp('6%'), width:wp('15%'), bottom:hp('2%'),right:wp('1.8%')}} />
+            <Image source={require('../res/images/drawerIcon.png')} style={{height:hp('6%'), width:wp('15%'), bottom:hp('1.6%'),right:wp('1.8%')}} />
         )
     } },
 
