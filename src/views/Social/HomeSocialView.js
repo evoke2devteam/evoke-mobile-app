@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { AppRegistry, Image, View, Text, TouchableHighlight, TouchableOpacity, Button, StyleSheet, ImageBackground, Dimensions,ScrollView } from 'react-native';
-import { GoogleSignin } from 'react-native-google-signin';
-import Animated from 'react-native-reanimated';
+import { AppRegistry, Image, View, Text, TouchableOpacity, ImageBackground, Dimensions,ScrollView,ToastAndroid,Alert} from 'react-native';
+import { GoogleSignin,statusCodes } from 'react-native-google-signin';
 import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp,
@@ -19,6 +18,7 @@ export default class HomeSocialView extends React.Component {
         super(props);
         this.state = {
             navigate: this.props.navigation.navigate,
+            mission: this.props.navigation.getParam('mission'),
             userInfo: {},
             index: 0,
             routes: [
@@ -30,7 +30,63 @@ export default class HomeSocialView extends React.Component {
         }
     }
     Photos = () => (
-        <View style={{ backgroundColor: '#FFFFFF',flex:1,height:hp('100%'),flexDirection:'row'}} >
+        <View style={{backgroundColor: '#FFFFFF',flex:1,height:hp('100%'),flexDirection:'row-reverse'}} >
+            
+            <TouchableOpacity onPress={() => this.state.navigate('SocialView')} underlayColor={'#05BAFA'} activeOpacity={0.1} >
+                <Image
+                source={require("../../res/images/fotoPrueba.png")}
+                style={styles.photos}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.state.navigate('SocialView')} underlayColor={'#05BAFA'} activeOpacity={0.1} >
+                <Image
+                source={require("../../res/images/fotoPrueba.png")}
+                style={styles.photos}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.state.navigate('SocialView')} underlayColor={'#05BAFA'} activeOpacity={0.1} >
+                <Image
+                source={require("../../res/images/fotoPrueba.png")}
+                style={styles.photos}
+                />
+            </TouchableOpacity>
+            
+            <TouchableOpacity onPress={() => this.state.navigate('SocialView')} underlayColor={'#05BAFA'} activeOpacity={0.1} >
+                <Image
+                source={require("../../res/images/fotoPrueba.png")}
+                style={styles.photos}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.state.navigate('SocialView')} underlayColor={'#05BAFA'} activeOpacity={0.1} >
+                <Image
+                source={require("../../res/images/fotoPrueba.png")}
+                style={styles.photos}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.state.navigate('SocialView')} underlayColor={'#05BAFA'} activeOpacity={0.1} >
+                <Image
+                source={require("../../res/images/fotoPrueba.png")}
+                style={styles.photos}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.state.navigate('SocialView')} underlayColor={'#05BAFA'} activeOpacity={0.1} >
+                <Image
+                source={require("../../res/images/fotoPrueba.png")}
+                style={styles.photos}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.state.navigate('SocialView')} underlayColor={'#05BAFA'} activeOpacity={0.1} >
+                <Image
+                source={require("../../res/images/fotoPrueba.png")}
+                style={styles.photos}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.state.navigate('SocialView')} underlayColor={'#05BAFA'} activeOpacity={0.1} >
+                <Image
+                source={require("../../res/images/fotoPrueba.png")}
+                style={styles.photos}
+                />
+            </TouchableOpacity>
             <TouchableOpacity onPress={() => this.state.navigate('SocialView')} underlayColor={'#05BAFA'} activeOpacity={0.1} >
                 <Image
                 source={require("../../res/images/fotoPrueba.png")}
@@ -38,6 +94,7 @@ export default class HomeSocialView extends React.Component {
                 />
             </TouchableOpacity>
             </View>
+            
       );
 
     Missions = () => (
@@ -54,7 +111,47 @@ export default class HomeSocialView extends React.Component {
         this.setState({ userInfo: userInfo.user });
        
     }
+   
+  
 
+    Evidencias = async()=>{
+        
+        const evokeUser= await GoogleSignin.signIn();
+
+        console.log(evokeUser.user.id);
+        console.log(evokeUser.idToken);
+            fetch(`http://evokecolombia.com/evidence/list`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0IiwiaWF0IjoxNTcyMzg2OTc0LCJzZWNyZXQiOiIxMSszRXYxdjBvM2tLa2VfNCJ9.jkTrhT-KoTjU9iITyPJlxBLovfBDEPVDLgJU5PhF2HY'}`
+
+                },
+                body: JSON.stringify({
+                    "id_gg": evokeUser.user.id,
+                    "id_mission": "kkck",
+                    
+                    
+                }),
+                
+            }).then((response) => response.json()).then((responseJson) => {
+                console.log(responseJson);
+                if(responseJson.status){
+                console.log('cargada');
+                ToastAndroid.show('Imagen cargada exitosamente!')
+                }else{
+                console.log('error');
+                ToastAndroid.show('Error al cargar imagen')
+                }
+                console.log(responseJson);
+            });
+        
+        
+        
+    }
+
+
+    
     
     render() {
 
@@ -79,8 +176,8 @@ export default class HomeSocialView extends React.Component {
                                  style={{height:hp('8%'),width:wp('16%'),left:wp('79.5%'),bottom:hp('8%')}}/>
                             
                             <Text style={styles.team}>Equipo 7</Text>
-                            <Text style={styles.name}>David el gato muerto</Text>
-                            <Text style={styles.rol}>Colaborador estrategico</Text>
+                            <Text style={styles.name}>David Hernández</Text>
+                            <Text style={styles.rol}>Colaborador Estratégico</Text>
                             
                             
                         </ImageBackground>
@@ -137,10 +234,11 @@ const styles = {
 
     },
     lineProfile: {
-        width: wp('98%'),
-        height: hp('12%'),
-        bottom:hp('2.4%'),
-        right:wp('4%'),
+        width: wp('99%'),
+        height: hp('9%'),
+        bottom:hp('1%'),
+        right:wp('4.2%')
+       
         
     },
     photoIcon: {
@@ -152,33 +250,32 @@ const styles = {
     },
     
     photos: {
-        
+        marginLeft:wp('0.2%'),
         width: wp('32%'),
         height: hp('20%'),
-        left: wp('0.2%'),
         top:hp('0.5%')
     },
     name:{
         left:wp('24%'),
-        bottom:hp('19%'),
+        bottom:hp('16%'),
         color: '#14def4',
-        fontSize: hp('3.5%'),
+        fontSize: wp('5.7%'),
         fontFamily: 'SpaceGrotesk-Bold'
 
     },
     rol:{
         left:wp('24%'),
-        bottom:hp('19%'),
+        bottom:hp('16%'),
         color: 'white',
-        fontSize: hp('2.6%'),
+        fontSize: wp('4.2%'),
         fontFamily: 'SpaceGrotesk-Medium'
 
     },
     team:{
         left:wp('24%'),
-        bottom:hp('19%'),
+        bottom:hp('16%'),
         color: 'white',
-        fontSize: hp('2.3%'),
+        fontSize: wp('3.8%'),
         fontFamily: 'SpaceGrotesk-Medium'
 
     },

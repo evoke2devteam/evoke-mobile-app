@@ -4,6 +4,7 @@ import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-goog
 import AsyncStorage from "@react-native-community/async-storage";
 import config from "../../config";
 
+
 export default class AuthView extends React.Component {
 
   static navigationOptions = {
@@ -25,7 +26,16 @@ export default class AuthView extends React.Component {
 
   configureGoogleSignIn() {
     GoogleSignin.configure({
-      scopes: ['https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/drive.file'],
+      scopes: [
+          'https://www.googleapis.com/auth/drive',
+        'https://www.googleapis.com/auth/drive.file',
+        'https://www.googleapis.com/auth/drive.appdata',
+        'https://www.googleapis.com/auth/drive.metadata',
+        'https://www.googleapis.com/auth/drive.metadata.readonly',
+        'https://www.googleapis.com/auth/drive.photos.readonly',
+        'https://www.googleapis.com/auth/drive.readonly',
+        'https://www.googleapis.com/auth/drive.scripts'
+      ],
       webClientId: config.CLIENT_ID,
       offlineAccess: false
     });
@@ -52,20 +62,26 @@ export default class AuthView extends React.Component {
       // Error saving data
     }
   };
-  async goToProfile() {
-    this.state.navigate('TabNavigator');
+
+  render() {
+    const body = this.state.isAuthenticated ? this.renderSignOutButton() : this.renderSignInButton();
+    return (
+        <View style={[styles.container, { flex: 1 }]}>
+          {body}
+        </View>
+    );
   }
 
   signIn = async () => {
-   
+
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      var token = await GoogleSignin.getTokens();
-      this.setState({ userInfo,token, error: null });
-      console.log(GoogleSignin.getCurrentUser());
-      this.storeToken('google_token', JSON.stringify(token));
-      this.goToProfile();
+      this.setState({ userInfo, error: null });
+      const token = await GoogleSignin.getTokens();
+      await AsyncStorage.setItem("google_token", userInfo.idToken);
+      await AsyncStorage.setItem("id_gg", userInfo.user.id);
+      
 
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -87,6 +103,49 @@ export default class AuthView extends React.Component {
 
 
   };
+
+  goToProfile(){
+      this.state.navigate('ProfileView');
+  }
+
+  authEvoke= async()=>{
+    const userInfo = await GoogleSignin.signIn();
+      fetch(`http://40.117.251.59/account/login`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${userInfo.idToken}`
+          },
+          body: JSON.stringify({
+              "id_gg": userInfo.user.id,
+              "firstName": userInfo.user.givenName,
+              "lastName": userInfo.user.familyName,
+              "email": userInfo.user.email
+          })
+      }).then( (response) => response.json()).then(async (responseJson) => {
+          if(responseJson.status){
+            Alert.alert(
+              " ",
+              'USUARIO REGISTRADO EXITOSAMENTE!',
+              [ {text: 'Ok'} ]
+          );
+            await AsyncStorage.setItem("id_bc", responseJson.data.id_bc);
+            await AsyncStorage.setItem("id_sb", responseJson.data.id_sb);
+            await AsyncStorage.setItem("evoke_token", responseJson.token);
+            this.goToProfile();
+          }else{
+
+              Alert.alert(
+                  " ",
+                  'Ha ocurrido un error, intentalo nuevamente',
+                  [ {text: 'Ok'} ]
+              );
+          }
+      }).catch((error) => {
+          console.error(error);
+      });
+
+  }
 
   signOut = async () => {
     try {

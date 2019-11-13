@@ -9,7 +9,7 @@ import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import HomeSocialView from './Social/HomeSocialView';
+import SocialView from './Social/SocialView';
 
 
 
@@ -22,7 +22,7 @@ export default createMaterialTopTabNavigator({
             )
         }
     },
-    Social: { screen: HomeSocialView, navigationOptions: {
+    Social: { screen: SocialView, navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
             <Image source={require('../res/images/socialIcon.png')} style={{height:hp('6%'), width:wp('11%'), bottom:hp('1.8%')}} />
         )

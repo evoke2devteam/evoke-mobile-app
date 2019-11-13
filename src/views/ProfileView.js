@@ -15,7 +15,6 @@ export default class ProfileView extends React.Component {
         this.state = {
             navigate: this.props.navigation.navigate,
             userInfo: {},
-            // evocoins: 0,
             language: (!!this.props.navigation.getParam('language')) ? this.props.navigation.navigate.getParam('language') : null
         }
     }
@@ -24,7 +23,7 @@ export default class ProfileView extends React.Component {
     async componentDidMount(): void {
         const userInfo = await GoogleSignin.getCurrentUser();
         this.setState({ userInfo: userInfo.user });
-        // this.getEvocoins();
+        
     }
 
 
@@ -54,14 +53,13 @@ export default class ProfileView extends React.Component {
                             {/* contenido */}
                             <Text style={styles.container_title}>Perfil</Text>
                             <Image source={require('../res/images/avatar.png')} style={styles.avatar} />
-                            <View style={{flexDirection:'row'}}>
                             <Text style={styles.experienceCounter}>1</Text>
                             <ProgressBarAndroid styleAttr='Horizontal' color="#3fa9f5" indeterminate={false} progress={0.2} style={styles.progressBar} />
                             <Text style={styles.levelLabel}>Nivel</Text>
                             <Text style={styles.counterPoints}>100</Text>
                             <Text style={styles.separator}>/</Text>
                             <Text style={styles.maxPoints}>150</Text>
-                            </View>
+                            
                         </ImageBackground>
                         </View>
                         <View style={{height:hp('20%'),width:wp('90%'),top:hp('1%')}}>
@@ -116,25 +114,7 @@ export default class ProfileView extends React.Component {
         );
     }
 
-    // getEvocoins() {
-    //     fetch('/evocoin/balanceOf', {
-    //         method: 'POST',
-    //         headers: {
-    //             Accept: 'application/json',
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //             email: this.state.userInfo.email
-    //         }),
-    //     }).then((response) => response.json())
-    //         .then((responseJson) => {
-    //             this.setState({ evocoins: responseJson.evocoins });
-    //         })
-    //         .catch((error) => {
-    //             this.setState({ evocoins: 0 });
-    //             console.log(error);
-    //         });
-    // }
+    
 
 
 }
@@ -211,7 +191,6 @@ const styles = {
     },
     backgroundThree: {
         flex:1,
-        flexDirection: 'column',
         width: wp('94%'),
         height: hp('45%'),
         left: wp('3%'),
@@ -221,48 +200,47 @@ const styles = {
     },
     avatar: {
         height: hp('26%'),
-        width: wp('25%'),
-        marginTop: hp('1%'),
+        width: wp('30%'),
         left: wp('30%')
     },
     experienceCounter: {
         color: 'white',
         fontSize: hp('5%'),
-        top: hp('2%'),
-        left: wp('73%'),
+        top: hp('1%'),
+        left: wp('74%'),
         fontFamily: 'SpaceGrotesk-Medium',
     },
     progressBar: {
         width: wp('35%'),
         transform: [{ scaleX: 1.0 }, { scaleY: 2.5 }],
-        left: wp('22%'),
-        top: hp('4%'),
+        left: wp('26%'),
+        bottom: hp('1%'),
 
     },
     levelLabel: {
-        top: hp('6%'),
-        right:wp('23%'),
+        bottom: hp('3.5%'),
+        left:wp('14%'),
         color: 'white',
         fontSize: hp('2%'),
         fontFamily: 'SpaceGrotesk-Medium'
     },
     counterPoints: {
-        top:hp('10%'),
-        right: wp('30%'),
+        bottom:hp('2.8%'),
+        left: wp('13%'),
         color: 'white',
         fontSize: hp('1.3%'),
         fontFamily: 'SpaceGrotesk-Medium'
     },
     separator: {
-        top: hp('9.8%'),
-        right: wp('30%'),
+        bottom: hp('4.8%'),
+        left: wp('17%'),
         color: 'white',
         fontSize: hp('1.6%'),
         fontFamily: 'SpaceGrotesk-Bold'
     },
     maxPoints: {
-        top: hp('9.8%'),
-        right: wp('30%'),
+        bottom: hp('6.8%'),
+        left: wp('19%'),
         color: 'white',
         fontSize: hp('1.6%'),
         fontFamily: 'SpaceGrotesk-Bold'
@@ -275,7 +253,7 @@ const styles = {
     },
     buttonStart: {
         top: hp('1.5%'),
-        left: wp('37%'),
+        left: wp('33%'),
         color: 'white',
         fontSize: hp('5%'),
         fontFamily: 'SpaceGrotesk-Medium'
