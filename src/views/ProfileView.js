@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Image, View, Text, TouchableHighlight, TouchableOpacity, Button, ProgressBarAndroid, ImageBackground, SafeAreaView } from 'react-native';
+import { AppRegistry, Image, View, Text, TouchableHighlight, TouchableOpacity, Button, ProgressBarAndroid, ImageBackground, SafeAreaView,ScrollView } from 'react-native';
 import { GoogleSignin } from 'react-native-google-signin';
 import StringsLanguage from '../utils/StringsLanguage';
 import {
@@ -37,7 +37,7 @@ export default class ProfileView extends React.Component {
         return (
 
             <ImageBackground source={require('../res/images/fondoCirculo.jpg')} style={styles.backgroundOne}>
-                <SafeAreaView style={styles.container} opacity={0.76}>
+                
                     <View style={{width:wp('100%'),height:('20%')}}>
                     <ImageBackground style={styles.backgroundTwo}
                         source={require('../res/images/cajaCounter.png')}>
@@ -50,7 +50,7 @@ export default class ProfileView extends React.Component {
 
                     </ImageBackground>
                     </View>
-                        <View style={{width:wp('100%'), height:hp('40%'),bottom:hp('10%'),flexDirection:'column'}}>
+                        <View style={{width:wp('100%'), height:hp('40%'),bottom:hp('5%'),flexDirection:'column'}}>
                         <ImageBackground
                             style={styles.backgroundThree}
                             source={require('../res/images/containerCentral.png')}>
@@ -112,7 +112,7 @@ export default class ProfileView extends React.Component {
 
                     </View>
 
-                </SafeAreaView>
+               
             </ImageBackground>
 
         );
@@ -146,7 +146,8 @@ export default class ProfileView extends React.Component {
 const styles = {
     container: {
         flex: 1,
-        flexDirection: 'column'
+        width:wp('100%'),
+        height:hp('100%')
     },
     backgroundOne: {
         flex: 1,
@@ -156,7 +157,8 @@ const styles = {
     backgroundTwo: {
         flex: 1,
         width: wp('80%'),
-        height: hp('10%'),
+        height: hp('8.5%'),
+        top:hp('0.4%'),
         left: wp('21%'),
         flexDirection: 'row'
 
@@ -187,19 +189,19 @@ const styles = {
         height: hp('4%'),
         width: wp('7%'),
         top: hp('1%'),
-        left: wp('30.5%')
+        left: wp('29%')
 
     },
     evocoinsCounter: {
         top: hp('1.2%'),
-        left: wp('38%'),
+        left: wp('36%'),
         color: 'white',
         fontSize: hp('2.6%'),
         fontFamily: 'SpaceGrotesk-Medium'
     },
     evocoinsLabel: {
         top: hp('4%'),
-        left: wp('28%'),
+        left: wp('25%'),
         color: 'white',
         fontSize: hp('1.4%'),
         fontFamily: 'SpaceGrotesk-Medium'
@@ -213,75 +215,70 @@ const styles = {
         bottom: hp('8%')
     },
     backgroundThree: {
+        flex:1,
         width: wp('94%'),
         height: hp('45%'),
-        marginTop:hp('5.8%'),
         left: wp('3%'),
-        flexDirection: 'row'
+    
 
 
     },
     avatar: {
-        height: hp('29%'),
-        width: wp('28%'),
-        top: hp('5%'),
-        left: wp('15%')
+        height: hp('26%'),
+        width: wp('30%'),
+        left: wp('30%')
     },
     experienceCounter: {
         color: 'white',
         fontSize: hp('5%'),
-        top: hp('34%'),
-        left: wp('73%'),
-        position:'absolute',
+        top: hp('1%'),
+        left: wp('74%'),
         fontFamily: 'SpaceGrotesk-Medium',
     },
     progressBar: {
         width: wp('35%'),
         transform: [{ scaleX: 1.0 }, { scaleY: 2.5 }],
-        left: wp('27%'),
-        position:'absolute',
-        top: hp('38.5%'),
+        left: wp('26%'),
+        bottom: hp('1%'),
 
     },
     levelLabel: {
-        top: hp('38.5%'),
-        left:wp('18%'),
+        bottom: hp('3.5%'),
+        left:wp('14%'),
         color: 'white',
         fontSize: hp('2%'),
-        position:'absolute',
         fontFamily: 'SpaceGrotesk-Medium'
     },
     counterPoints: {
-        top: hp('42.5%'),
-        right: wp('75%'),
+        bottom:hp('2.8%'),
+        left: wp('13%'),
         color: 'white',
         fontSize: hp('1.3%'),
-        position:'absolute',
         fontFamily: 'SpaceGrotesk-Medium'
     },
     separator: {
-        top: hp('42%'),
-        right: wp('73%'),
+        bottom: hp('4.8%'),
+        left: wp('17%'),
         color: 'white',
-        position:'absolute',
         fontSize: hp('1.6%'),
         fontFamily: 'SpaceGrotesk-Bold'
     },
     maxPoints: {
-        top: hp('42.5%'),
-        right: wp('68%'),
+        bottom: hp('6.8%'),
+        left: wp('19%'),
         color: 'white',
-        position:'absolute',
         fontSize: hp('1.6%'),
         fontFamily: 'SpaceGrotesk-Bold'
     },
     backgroundFour: {
+        flex:1,
+        flexDirection: 'column',
         height: hp('10%'),
         left: wp('4.6%')
     },
     buttonStart: {
         top: hp('1.5%'),
-        left: wp('37%'),
+        left: wp('33%'),
         color: 'white',
         fontSize: hp('5%'),
         fontFamily: 'SpaceGrotesk-Medium'
@@ -294,7 +291,7 @@ const styles = {
     },
     buttonShop: {
         height: hp('13.6%'),
-        width: wp('30%'),
+        width: wp('28%'),
         bottom: hp('7.8%'),
         left: wp('7%')
     },
@@ -302,7 +299,7 @@ const styles = {
         height: hp('12%'),
         width: wp('28%'),
         bottom: hp('7%'),
-        left: wp('7%')
+        left: wp('8%')
     },
     habilitiesLabel: {
         color: 'white',

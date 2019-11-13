@@ -20,7 +20,7 @@ export default class DrawerView extends React.Component {
     async componentDidMount(): void {
         const userInfo = await GoogleSignin.getCurrentUser();
         this.setState({ userInfo: userInfo.user });
-        this.getEvocoins();
+        
     }
 
     signOut = async () => {

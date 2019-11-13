@@ -11,10 +11,11 @@ import SettingsView from './src/views/SettingsView';
 import CodeValidationView from './src/views/CodeValidationView';
 import SkillsView from './src/views/SkillsView';
 import TabNavigator from './src/views/TabNavigator';
+import SocialView from './src/views/Social/SocialView';
+import HomeSocialView from './src/views/Social/HomeSocialView';
 import IntroView from './src/views/IntroView';
 import LoadingView from './src/views/LoadingView';
 import ImmersionView from './src/views/ImmersionView';
-
 
 const MainNavigator = createStackNavigator({
     LoadingView: {screen: LoadingView},
@@ -30,6 +31,8 @@ const MainNavigator = createStackNavigator({
     ImmersionView: {screen: ImmersionView},
     SkillsView: {screen: SkillsView},
     TabNavigator: {screen: TabNavigator},
+    SocialView:{screen: SocialView},
+    HomeSocialView:{screen: HomeSocialView}
 });
 
 const App = createAppContainer(MainNavigator);

@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import config from "../../config";
 import Config from "../utils/Constants";
 
+
 export default class AuthView extends React.Component {
 
   static navigationOptions = {
