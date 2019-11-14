@@ -32,9 +32,9 @@ export default class LoadingView extends React.Component {
         const isSignedIn = await GoogleSignin.isSignedIn();
 
         if(isSignedIn){
-            this.state.navigate('ProfileView');
+            this.state.navigate('TabNavigator');
         }else{
-            this.state.navigate('CodeValidationView');
+            this.state.navigate('AuthView');
         }
     }
 

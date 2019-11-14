@@ -47,6 +47,7 @@ export default class CampaignListlView extends React.Component {
                             checkmark = { (this.state.immersion && item.id === 1)}
                             disabled={(this.state.immersion && item.id === 1)}
                             onPress={() => this.goToCampaignDetail(item)}
+                            textStyle={styles.item}
                         />
                     ))
                 }
@@ -60,7 +61,11 @@ const styles = {
         fontSize: 35,
         marginTop: 20,
         marginBottom: 15,
-        marginLeft: 10
+        marginLeft: 10,
+        color: 'black'
+    },
+    item: {
+        color: 'black'
     }
 };
 

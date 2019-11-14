@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, Image, View, Text, TouchableHighlight, TouchableOpacity, Button, ProgressBarAndroid, ImageBackground, SafeAreaView,ScrollView } from 'react-native';
 import { GoogleSignin } from 'react-native-google-signin';
-import StringsLanguage from '../utils/StringsLanguage';
+import AsyncStorage from "@react-native-community/async-storage";
 import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp,
@@ -37,7 +37,7 @@ export default class ProfileView extends React.Component {
         return (
 
             <ImageBackground source={require('../res/images/fondoCirculo.jpg')} style={styles.backgroundOne}>
-                
+
                     <View style={{width:wp('100%'),height:('20%')}}>
                     <ImageBackground style={styles.backgroundTwo}
                         source={require('../res/images/cajaCounter.png')}>
@@ -63,14 +63,14 @@ export default class ProfileView extends React.Component {
                             <Text style={styles.counterPoints}>100</Text>
                             <Text style={styles.separator}>/</Text>
                             <Text style={styles.maxPoints}>150</Text>
-                            
+
                         </ImageBackground>
                         </View>
                         <View style={{height:hp('20%'),width:wp('90%'),top:hp('1%')}}>
                     <ImageBackground
                         style={styles.backgroundFour}
                         source={require('../res/images/boton.png')}>
-                        <TouchableOpacity onPress={() => this.state.navigate('MisionListView')}>
+                        <TouchableOpacity onPress={() => this.state.navigate('CampaignListView')}>
                             <Text style={styles.buttonStart}>Jugar</Text>
                         </TouchableOpacity>
 
@@ -112,7 +112,7 @@ export default class ProfileView extends React.Component {
 
                     </View>
 
-               
+
             </ImageBackground>
 
         );
@@ -219,7 +219,7 @@ const styles = {
         width: wp('94%'),
         height: hp('45%'),
         left: wp('3%'),
-    
+
 
 
     },

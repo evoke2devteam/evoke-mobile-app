@@ -33,6 +33,8 @@ const MainNavigator = createStackNavigator({
     TabNavigator: {screen: TabNavigator},
     SocialView:{screen: SocialView},
     HomeSocialView:{screen: HomeSocialView}
+}, {
+    headerMode:'none'
 });
 
 const App = createAppContainer(MainNavigator);

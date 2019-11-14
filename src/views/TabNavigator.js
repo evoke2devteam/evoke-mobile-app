@@ -26,7 +26,7 @@ export default createMaterialTopTabNavigator({
             <Image source={require('../res/images/socialIcon.png')} style={{height:hp('6%'), width:wp('11%'), bottom:hp('1.8%')}} />
         )
     } },
-    Notification: { screen: CampaignDetailView, navigationOptions: {
+    Notification: { screen: NotificationsView, navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
             <Image source={require('../res/images/notificationsIcon.png')} style={{height:hp('6%'), width:wp('11%'), bottom:hp('1.7%')}} />
         )
@@ -52,7 +52,7 @@ export default createMaterialTopTabNavigator({
             flex:1,
             height:hp('8%'),
             width:wp('25%')
-            
+
         },
         style: {
             backgroundColor: '#3b415b',
@@ -65,7 +65,7 @@ export default createMaterialTopTabNavigator({
             left:wp('5%'),
             borderRadius:20
         }
-        
+
 
 
     }

@@ -106,7 +106,7 @@ export default class AuthView extends React.Component {
   };
 
   goToProfile(){
-      this.state.navigate('ProfileView');
+      this.state.navigate('TabNavigator');
   }
 
   authEvoke(idGoogle, name, email, authToken){
@@ -119,22 +119,29 @@ export default class AuthView extends React.Component {
           body: JSON.stringify({
               "id_gg": idGoogle,
               "firstName": name,
+              "lastName": name,
               "email": email
           })
       }).then( (response) => response.json()).then(async (responseJson) => {
           if(responseJson.status){
             await AsyncStorage.setItem("id_bc", responseJson.data.id_bc);
-            await AsyncStorage.setItem("id_sb", responseJson.data.id_sb);
             await AsyncStorage.setItem("evoke_token", responseJson.token);
             this.goToProfile();
           }else{
-              Alert.alert(
+              this.goToProfile();
+              /*Alert.alert(
                   '',
                   'Ha ocurrido un error, intentalo nuevamente',
                   [ {text: 'Ok'} ]
-              );
+              );*/
           }
       }).catch((error) => {
+          this.goToProfile();
+          /*Alert.alert(
+              '',
+              'Ha ocurrido un error, intentalo nuevamente',
+              [ {text: 'Ok'} ]
+          );*/
           console.error(error);
       });
 

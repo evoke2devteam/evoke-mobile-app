@@ -13,13 +13,13 @@ export default class ImmersionView extends React.Component {
             navigate: this.props.navigation.navigate,
             questions: ImmersionData,
             currentSlide: 0
-        }
+        };
         this.sendTest = this.sendTest.bind(this);
     }
 
     async sendTest(){
         await AsyncStorage.setItem('immersion', 'true');
-        this.state.navigate('ProfileView');
+        this.state.navigate('TabNavigator');
     }
 
     render() {
@@ -54,8 +54,7 @@ export default class ImmersionView extends React.Component {
                                                     'Hemos encontrado que el perfil que más se ajusta a tu personalidad es: FILÁNTROPO',
                                                     [{text: 'Continuar', onPress: () => {this.sendTest()}}],
                                                     {cancelable: false},
-                                                )
-                                                }
+                                                )}
                                             /> : null
                                     }
                             </View>
@@ -72,7 +71,6 @@ export const { width, height } = Dimensions.get('window');
 
 const styles = {
     container: {
-        flex: 1,
         backgroundColor: 'white'
     },
     child: {
