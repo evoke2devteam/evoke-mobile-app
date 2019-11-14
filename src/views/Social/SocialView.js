@@ -514,11 +514,11 @@ export default class SocialView extends React.Component {
                     <View style={{ height: hp('35%'), width:wp('100%') }}>
                     <View style={{backgroundColor:'#3b4171', width:wp('90.2%'),height:hp('5%'),bottom:hp('1.4%'),left:wp('5.2%'),flexDirection:'row'}}>
                     <Image source={require('../../res/images/corazon.png')}
-                    style={{height:hp('4%'),width:wp('7.2%'),left:wp('1%'),top:hp('0.4%')}}/>
+                    style={{height:hp('3%'),width:wp('9%'),left:wp('1%'),top:hp('0.4%')}}/>
                     <Image source={require('../../res/images/comentar.png')}
-                    style={{height:hp('4%'),width:wp('7.5%'),left:wp('3%'),top:hp('0.4%')}}/>
+                    style={{height:hp('3%'),width:wp('9%'),left:wp('3%'),top:hp('0.4%')}}/>
                     <Image source={require('../../res/images/compartir.png')}
-                    style={{height:hp('4%'),width:wp('8%'),left:wp('5%'),top:hp('0.4%')}}/>
+                    style={{height:hp('3%'),width:wp('8%'),left:wp('5%'),top:hp('0.4%')}}/>
                     </View>
                     <View style={{backgroundColor:'#404474', width:wp('90.2%'),height:hp('5%'),bottom:hp('1.35%'),left:wp('5.2%'),flexDirection:'row'}}>
                     <Text style={styles.textRegular}> A</Text>
@@ -599,18 +599,21 @@ const styles = {
         fontFamily: 'SpaceGrotesk-Regular',
         top:hp('0.5%'),
         fontSize: hp('2%'),
+        color:'white'
          
     },
     textBold:{
         fontFamily: 'SpaceGrotesk-Bold',
-        top:hp('0.5%'),
-        fontSize: hp('2%'),
+        top:hp('0.8%'),
+        fontSize: hp('1.8%'),
+        color:'white'
         
     },
     textRegularSmall:{
         fontFamily: 'SpaceGrotesk-Regular',
         top:hp('1.1%'),
         fontSize: hp('1.4%'),
+        color:'white'
     }
 
 };
